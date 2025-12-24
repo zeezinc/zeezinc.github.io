@@ -292,11 +292,11 @@ const App: React.FC = () => {
          <ExperienceTimeline experience={activeProfile.experience} theme={theme} />
       </SectionWrapper>
 
-      {/* Projects Section */}
+      {/* Projects Section - UPDATED TO HORIZONTAL SCROLL */}
       <SectionWrapper id="projects" title="Projects" colorKey="green" fullWidth={true} theme={theme}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory px-4" style={{ scrollbarWidth: 'thin' }}>
            {activeProfile.projects.map((project) => (
-             <div key={project.id} className="h-[450px]">
+             <div key={project.id} className="min-w-[85vw] md:min-w-[450px] lg:min-w-[400px] h-[450px] snap-center flex-shrink-0">
                <ProjectCard project={project} color={theme === 'neon' ? '#0aff64' : '#10b981'} theme={theme} />
              </div>
            ))}

@@ -33,7 +33,7 @@ const SectionWrapper: React.FC<SectionProps> = ({ id, title, children, alternate
     <section 
       id={id} 
       ref={ref}
-      className={`flex items-center justify-center py-10 px-4 relative overflow-hidden`} // Reduced padding to py-10
+      className={`flex items-center justify-center py-20 px-4 relative overflow-hidden`} // Reduced padding to py-20
     >
       <div className={`container mx-auto relative z-10 ${fullWidth ? 'max-w-[90%]' : 'max-w-7xl'}`}>
         <motion.div
