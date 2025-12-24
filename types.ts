@@ -53,12 +53,18 @@ export interface Skill {
   category: string;
 }
 
+export interface About {
+  text: string;
+  hobbies: string[];
+}
+
 export interface ProfileData {
   hero: {
     title: string;
     subtitle: string;
     description: string;
   };
+  about: About;
   projects: Project[];
   experience: Experience[];
   education: Education[];

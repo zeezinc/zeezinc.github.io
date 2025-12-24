@@ -3,6 +3,7 @@ import { ProfileData } from './types';
 
 export const NAV_LINKS = [
   { name: 'Home', href: '#hero' },
+  { name: 'About', href: '#about' },
   { name: 'Education', href: '#education' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
@@ -15,6 +16,10 @@ export const AI_PROFILE: ProfileData = {
     title: "GENERATIVE AI ENGINEER",
     subtitle: "Architecting the Future with LLMs & Neural Networks",
     description: "Specializing in Large Language Models, Diffusion Architectures, and Agentic Workflows. I build intelligent systems that create, reason, and adapt."
+  },
+  about: {
+    text: "I'm a digital alchemist transforming raw data into intelligent experiences. Beyond the neural networks, I'm a sci-fi enthusiast who believes the best way to predict the future is to code it. I thrive on the edge of what's possible, constantly pushing the boundaries of generative creativity.",
+    hobbies: ["Sci-Fi Novels", "Synthesizers", "Chess", "Digital Art", "Robotics"]
   },
   projects: [
     {
@@ -114,6 +119,10 @@ export const SWE_PROFILE: ProfileData = {
     title: "FULL STACK ENGINEER",
     subtitle: "Building Scalable Digital Architectures",
     description: "Crafting robust web applications with clean code and modern architectures. I bridge the gap between complex backend logic and intuitive frontend experiences."
+  },
+  about: {
+    text: "I'm a structural artist of the web, believing that clean code is poetry. My passion lies in building systems that are robust, scalable, and delightful to use. When I'm not optimizing algorithms, I'm likely exploring nature or building custom mechanical keyboards.",
+    hobbies: ["Hiking", "Mech Keyboards", "Photography", "Espresso", "Gaming"]
   },
   projects: [
     {

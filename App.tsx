@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Download, Cpu, Brain, Award, CheckCircle, Heart, ToggleLeft, ToggleRight } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Download, Cpu, Brain, Award, CheckCircle, Heart, ToggleLeft, ToggleRight, GraduationCap, Sparkles } from 'lucide-react';
 import Background3D from './components/Background3D';
 import SectionWrapper from './components/SectionWrapper';
 import SkillsChart from './components/SkillsChart';
@@ -85,10 +85,14 @@ const App: React.FC = () => {
   const iconHover = theme === 'neon' ? 'hover:text-neon-cyan' : 'hover:text-mech-sky';
   const selectionClass = theme === 'neon' ? 'selection:bg-neon-cyan/30 selection:text-neon-cyan' : 'selection:bg-mech-sky/30 selection:text-mech-sky';
 
-  // Images for Education section
+  // Images
+  const aboutImage = theme === 'neon'
+    ? 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop' // Neon Portrait/Robot
+    : 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1974&auto=format&fit=crop'; // Clean workspace/Coffee
+
   const educationImage = theme === 'neon' 
-    ? 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop' // Cyberpunk City
-    : 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'; // Clean Lab/Engineering
+    ? 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop' // Abstract Neon Neural Network / Data
+    : 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'; // Modern Corporate/University Interior
 
   return (
     <div className={`relative min-h-screen font-sans transition-colors duration-500 ${bgClass} ${selectionClass}`}>
@@ -265,6 +269,57 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* About Section */}
+      <SectionWrapper
+        id="about"
+        title="Behind the Code"
+        colorKey="pink"
+        theme={theme}
+        alternate={true}
+        visualImage={aboutImage}
+      >
+        <div className="space-y-8">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`text-lg leading-relaxed font-light ${theme === 'neon' ? 'text-gray-300' : 'text-gray-600'}`}
+            >
+               <p>{activeProfile.about.text}</p>
+            </motion.div>
+
+            <div>
+                <motion.h4 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className={`text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2 ${theme === 'neon' ? 'text-neon-pink' : 'text-mech-amber'}`}
+                >
+                   <Sparkles size={14} /> Interests & Hobbies
+                </motion.h4>
+                <div className="flex flex-wrap gap-3">
+                    {activeProfile.about.hobbies.map((hobby, i) => (
+                        <motion.span 
+                            key={i} 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.3 + (i * 0.1), type: "spring", stiffness: 200 }}
+                            whileHover={{ y: -5, rotate: i % 2 === 0 ? 3 : -3, scale: 1.1 }}
+                            className={`px-4 py-2 rounded-full text-sm font-medium border cursor-default flex items-center gap-2 transition-colors duration-300
+                                ${theme === 'neon' 
+                                    ? 'bg-white/5 border-white/10 text-white hover:border-neon-pink hover:bg-neon-pink/10 hover:shadow-[0_0_15px_rgba(255,0,85,0.3)]' 
+                                    : 'bg-white border-gray-200 text-mech-text hover:border-mech-amber hover:bg-mech-amber/10 hover:shadow-md'
+                                }
+                            `}
+                        >
+                            {hobby}
+                        </motion.span>
+                    ))}
+                </div>
+            </div>
+        </div>
+      </SectionWrapper>
+
       {/* Education Section - Split Layout with Image */}
       <SectionWrapper 
         id="education" 
@@ -274,17 +329,78 @@ const App: React.FC = () => {
         theme={theme}
         visualImage={educationImage}
       >
-        <div className="space-y-8">
-          {activeProfile.education.map((edu) => (
-            <div key={edu.id} className={`relative pl-6 border-l-2 transition-colors duration-300 ${theme === 'neon' ? 'border-white/20 hover:border-neon-purple' : 'border-gray-300 hover:border-mech-indigo'}`}>
-              <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${theme === 'neon' ? 'bg-bg-dark border-neon-purple' : 'bg-white border-mech-indigo'}`}></div>
-              <h3 className={`text-xl font-bold ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`}>{edu.degree}</h3>
-              <p className={`${theme === 'neon' ? 'text-neon-purple' : 'text-mech-indigo'} font-display text-sm mt-1`}>{edu.institution}</p>
-              <p className={`${theme === 'neon' ? 'text-gray-500' : 'text-gray-400'} text-sm mb-2`}>{edu.year}</p>
-              <p className={`${theme === 'neon' ? 'text-gray-300' : 'text-gray-600'} text-sm leading-relaxed`}>{edu.details}</p>
-            </div>
-          ))}
-        </div>
+         <div className="relative pl-12 space-y-8">
+            {/* Timeline Vertical Line */}
+             <div className={`absolute left-4 top-2 bottom-2 w-0.5 rounded-full ${theme === 'neon' ? 'bg-white/10' : 'bg-gray-200'}`}>
+                <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-b ${theme === 'neon' ? 'from-neon-purple via-neon-purple/50 to-transparent' : 'from-mech-indigo via-mech-indigo/50 to-transparent'}`}></div>
+             </div>
+
+            {activeProfile.education.map((edu, index) => (
+              <div key={edu.id} className="relative group/timeline">
+                {/* Timeline Dot */}
+                <div className={`absolute -left-[39px] top-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300
+                    ${theme === 'neon' 
+                        ? 'bg-bg-dark border-neon-purple shadow-[0_0_10px_rgba(188,19,254,0.5)] group-hover/timeline:scale-125 group-hover/timeline:bg-neon-purple' 
+                        : 'bg-white border-mech-indigo group-hover/timeline:scale-125 group-hover/timeline:bg-mech-indigo'
+                    }
+                `}></div>
+                
+                {/* Horizontal Connector */}
+                 <div className={`absolute -left-[32px] top-[31px] w-8 h-[2px] 
+                     ${theme === 'neon' ? 'bg-neon-purple/30' : 'bg-mech-indigo/30'}
+                 `}></div>
+
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ x: 5 }}
+                  className={`relative p-6 rounded-xl border transition-all duration-300 group
+                    ${theme === 'neon' 
+                      ? 'bg-white/5 border-white/10 hover:border-neon-purple hover:bg-white/10 hover:shadow-[0_0_15px_rgba(188,19,254,0.2)]' 
+                      : 'bg-white border-gray-200 hover:border-mech-indigo hover:shadow-lg'
+                    }
+                  `}
+                >
+                  {/* Decorative corner accents for Neon */}
+                  {theme === 'neon' && (
+                    <>
+                      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/30 group-hover:border-neon-purple transition-colors"></div>
+                      <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/30 group-hover:border-neon-purple transition-colors"></div>
+                    </>
+                  )}
+
+                  <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-2 mb-2">
+                      <div>
+                           <h3 className={`text-xl font-bold ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`}>
+                              {edu.degree}
+                           </h3>
+                           <div className={`flex items-center gap-2 text-sm font-medium mt-1 ${theme === 'neon' ? 'text-neon-purple' : 'text-mech-indigo'}`}>
+                              <GraduationCap size={16} />
+                              {edu.institution}
+                           </div>
+                      </div>
+                      <span className={`text-xs font-mono py-1 px-2 rounded border whitespace-nowrap
+                          ${theme === 'neon' 
+                             ? 'bg-neon-purple/10 border-neon-purple/30 text-neon-purple' 
+                             : 'bg-mech-indigo/10 border-mech-indigo/20 text-mech-indigo'
+                          }
+                      `}>
+                          {edu.year}
+                      </span>
+                  </div>
+                  
+                  {theme === 'neon' && (
+                      <div className="text-[10px] font-mono text-gray-500 mb-2 tracking-widest uppercase">ID: ED-0{edu.id}</div>
+                  )}
+
+                  <p className={`text-sm leading-relaxed ${theme === 'neon' ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {edu.details}
+                  </p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
       </SectionWrapper>
 
       {/* Experience Section - REPLACED WITH CHRONOLOGICAL TIMELINE */}
