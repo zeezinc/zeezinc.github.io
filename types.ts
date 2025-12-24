@@ -10,6 +10,7 @@ export interface SectionProps {
   colorKey: 'cyan' | 'purple' | 'green' | 'pink'; // Abstracted color key
   fullWidth?: boolean;
   theme: Theme;
+  visualImage?: string; // URL for the side image
 }
 
 export interface Project {

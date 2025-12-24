@@ -25,7 +25,7 @@ const SkillBar: React.FC<SkillBarProps> = ({ name, level, delay = 0, theme }) =>
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1.5, delay, ease: "easeOut" }}
           className={`h-full rounded-full ${fillClass}`}
         />

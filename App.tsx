@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Download, Moon, Sun, Cpu, Brain } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Download, Cpu, Brain, Award, CheckCircle, Heart, ToggleLeft, ToggleRight } from 'lucide-react';
 import Background3D from './components/Background3D';
 import SectionWrapper from './components/SectionWrapper';
 import SkillsChart from './components/SkillsChart';
@@ -48,6 +48,11 @@ const App: React.FC = () => {
   const iconHover = theme === 'neon' ? 'hover:text-neon-cyan' : 'hover:text-mech-sky';
   const selectionClass = theme === 'neon' ? 'selection:bg-neon-cyan/30 selection:text-neon-cyan' : 'selection:bg-mech-sky/30 selection:text-mech-sky';
 
+  // Images for Education section
+  const educationImage = theme === 'neon' 
+    ? 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop' // Cyberpunk City
+    : 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'; // Clean Lab/Engineering
+
   return (
     <div className={`relative min-h-screen font-sans transition-colors duration-500 ${bgClass} ${selectionClass}`}>
       
@@ -60,28 +65,30 @@ const App: React.FC = () => {
       {/* 3D Background */}
       <Background3D theme={theme} />
 
-      {/* Theme Toggle Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <button 
-          onClick={toggleTheme}
-          className={`p-4 rounded-full shadow-xl transition-all duration-500 transform hover:scale-110 flex items-center justify-center
-            ${theme === 'neon' ? 'bg-white/10 text-neon-cyan border border-neon-cyan/50' : 'bg-white text-mech-amber border border-mech-amber'}
-          `}
-          title={`Switch to ${theme === 'neon' ? 'Software Engineer' : 'AI Engineer'} Profile`}
-        >
-          {theme === 'neon' ? <Brain size={24} /> : <Cpu size={24} />}
-          <span className="ml-2 font-bold hidden md:inline">{theme === 'neon' ? 'AI MODE' : 'DEV MODE'}</span>
-        </button>
-      </div>
-
       {/* Navbar */}
       <nav className={`fixed top-0 w-full z-40 backdrop-blur-md border-b transition-colors duration-500 ${navBg}`}>
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" className={`font-display text-2xl font-bold tracking-widest transition-colors ${theme === 'neon' ? 'text-white hover:text-neon-cyan' : 'text-mech-text hover:text-mech-sky'}`}>
-            {theme === 'neon' ? 'NEON' : 'DEV'}<span className={accentText}>{theme === 'neon' ? 'GEN' : 'OPS'}</span>
-          </a>
+          <div className="flex items-center gap-6">
+            <a href="#" className={`font-display text-2xl font-bold tracking-widest transition-colors ${theme === 'neon' ? 'text-white hover:text-neon-cyan' : 'text-mech-text hover:text-mech-sky'}`}>
+              {theme === 'neon' ? 'NEON' : 'DEV'}<span className={accentText}>{theme === 'neon' ? 'GEN' : 'OPS'}</span>
+            </a>
+          </div>
 
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
+            {/* Theme Toggle Button - Desktop */}
+            <button 
+                onClick={toggleTheme}
+                className={`flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border transition-all ${
+                  theme === 'neon' 
+                    ? 'border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10' 
+                    : 'border-mech-sky text-mech-sky hover:bg-mech-sky/10'
+                }`}
+                title="Switch Theme"
+              >
+                {theme === 'neon' ? <Brain size={14} /> : <Cpu size={14} />}
+                <span>{theme === 'neon' ? 'AI' : 'DEV'}</span>
+            </button>
+
             {NAV_LINKS.map((link) => (
               <button
                 key={link.name}
@@ -94,9 +101,19 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          <button className={`md:hidden ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+          <div className="flex md:hidden items-center gap-4">
+             {/* Theme Toggle Button - Mobile (Compact) */}
+             <button 
+                onClick={toggleTheme}
+                className={`p-1 ${theme === 'neon' ? 'text-neon-cyan' : 'text-mech-sky'}`}
+              >
+                {theme === 'neon' ? <Brain size={20} /> : <Cpu size={20} />}
+             </button>
+
+            <button className={`md:hidden ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
 
         {isMenuOpen && (
@@ -191,8 +208,15 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Education Section */}
-      <SectionWrapper id="education" title="Education" colorKey="purple" alternate={false} theme={theme}>
+      {/* Education Section - Split Layout with Image */}
+      <SectionWrapper 
+        id="education" 
+        title="Education" 
+        colorKey="purple" 
+        alternate={false} 
+        theme={theme}
+        visualImage={educationImage}
+      >
         <div className="space-y-8">
           {activeProfile.education.map((edu) => (
             <div key={edu.id} className={`relative pl-6 border-l-2 transition-colors duration-300 ${theme === 'neon' ? 'border-white/20 hover:border-neon-purple' : 'border-gray-300 hover:border-mech-indigo'}`}>
@@ -206,11 +230,11 @@ const App: React.FC = () => {
         </div>
       </SectionWrapper>
 
-      {/* Experience Section */}
-      <SectionWrapper id="experience" title="Experience" colorKey="cyan" alternate={true} theme={theme}>
-        <div className="space-y-10">
+      {/* Experience Section - Expanded Full Width */}
+      <SectionWrapper id="experience" title="Experience" colorKey="cyan" fullWidth={true} theme={theme}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {activeProfile.experience.map((exp) => (
-            <div key={exp.id} className="group">
+            <div key={exp.id} className="group p-6 rounded-xl transition-all duration-300 hover:bg-white/5">
               <div className="flex justify-between items-baseline mb-2">
                 <h3 className={`text-2xl font-bold transition-colors ${theme === 'neon' ? 'text-white group-hover:text-neon-cyan' : 'text-mech-text group-hover:text-mech-sky'}`}>{exp.role}</h3>
                 <span className="text-sm font-mono text-gray-500">{exp.period}</span>
@@ -270,32 +294,43 @@ const App: React.FC = () => {
         </div>
       </SectionWrapper>
 
-      {/* Certificates Section */}
-      <SectionWrapper id="certificates" title="Certifications" colorKey="purple" alternate={false} theme={theme}>
-        <div className="grid gap-6">
+      {/* Certificates Section - Redesigned */}
+      <SectionWrapper id="certificates" title="Certifications" colorKey="purple" fullWidth={true} theme={theme}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {activeProfile.certificates.map((cert) => (
-            <div key={cert.id} className={`flex items-center gap-4 p-4 rounded-lg transition-all border-l-4 group
-              ${theme === 'neon' 
-                ? 'bg-gradient-to-r from-white/5 to-transparent hover:from-white/10 border-neon-purple'
-                : 'bg-white shadow hover:shadow-md border-mech-indigo'
-              }
-            `}>
-               <div className={`p-3 rounded-full transition-colors ${
-                 theme === 'neon'
-                 ? 'bg-neon-purple/20 text-neon-purple group-hover:bg-neon-purple group-hover:text-black'
-                 : 'bg-mech-indigo/10 text-mech-indigo group-hover:bg-mech-indigo group-hover:text-white'
-               }`}>
-                  <Download size={20} />
+            <motion.div 
+              key={cert.id}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className={`relative overflow-hidden p-8 rounded-xl border transition-all duration-300
+                ${theme === 'neon' 
+                  ? 'bg-white/5 backdrop-blur-md border-neon-purple/30 hover:shadow-[0_0_25px_rgba(188,19,254,0.3)] hover:border-neon-purple/80'
+                  : 'bg-white border-mech-indigo/20 shadow-md hover:shadow-xl hover:border-mech-indigo/50'
+                }
+              `}
+            >
+               {/* Decorative Background Element */}
+               <div className={`absolute top-0 right-0 p-4 opacity-10 ${theme === 'neon' ? 'text-neon-purple' : 'text-mech-indigo'}`}>
+                  <Award size={100} strokeWidth={1} />
                </div>
-               <div>
-                  <h4 className={`font-bold text-lg ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`}>{cert.name}</h4>
-                  <div className={`flex gap-2 text-sm ${theme === 'neon' ? 'text-gray-400' : 'text-gray-500'}`}>
-                    <span>{cert.issuer}</span>
-                    <span>•</span>
-                    <span>{cert.date}</span>
-                  </div>
+
+               <div className="relative z-10 flex flex-col h-full">
+                 <div className="mb-4">
+                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-2 ${
+                        theme === 'neon' ? 'bg-neon-purple/20 text-neon-purple' : 'bg-mech-indigo/10 text-mech-indigo'
+                    }`}>
+                        <CheckCircle size={12} /> Verified
+                    </div>
+                 </div>
+                 
+                 <h4 className={`text-xl font-bold mb-2 leading-tight ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`}>{cert.name}</h4>
+                 <p className={`text-sm font-medium mb-1 ${theme === 'neon' ? 'text-gray-300' : 'text-mech-indigo'}`}>{cert.issuer}</p>
+                 <p className={`text-xs ${theme === 'neon' ? 'text-gray-500' : 'text-gray-400'}`}>Issued: {cert.date}</p>
+                 
+                 <div className={`mt-6 w-full h-1 rounded-full ${theme === 'neon' ? 'bg-white/10' : 'bg-gray-100'}`}>
+                    <div className={`h-full w-2/3 rounded-full ${theme === 'neon' ? 'bg-neon-purple shadow-[0_0_10px_#bc13fe]' : 'bg-mech-indigo'}`}></div>
+                 </div>
                </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </SectionWrapper>
@@ -306,7 +341,11 @@ const App: React.FC = () => {
         ? 'text-gray-500 bg-black/50 border-white/5' 
         : 'text-gray-600 bg-white/50 border-gray-200'
       }`}>
-        <p>&copy; {new Date().getFullYear()} {theme === 'neon' ? 'NeonGen' : 'DevOps'} Portfolio. Built with React, Three.js & Tailwind.</p>
+        <p className="flex items-center justify-center gap-2">
+            &copy; {new Date().getFullYear()} {theme === 'neon' ? 'Gen AI Engineer Portfolio' : 'Software Development Portfolio'}. 
+            <Heart size={14} className="text-red-500 fill-red-500 animate-pulse" /> 
+            by Zeeshan Shaikh.
+        </p>
       </footer>
     </div>
   );

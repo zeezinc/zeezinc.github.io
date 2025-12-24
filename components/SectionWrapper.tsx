@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { SectionProps, Theme } from '../types';
 
-const SectionWrapper: React.FC<SectionProps> = ({ id, title, children, alternate = false, colorKey, fullWidth = false, theme }) => {
+const SectionWrapper: React.FC<SectionProps> = ({ id, title, children, alternate = false, colorKey, fullWidth = false, theme, visualImage }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   const getThemeClasses = () => {
     if (theme === 'neon') {
@@ -77,34 +77,25 @@ const SectionWrapper: React.FC<SectionProps> = ({ id, title, children, alternate
               transition={{ duration: 0.8, delay: 0.4 }}
               className={`flex justify-center items-center h-full min-h-[300px] ${alternate ? 'lg:col-start-1' : ''}`}
             >
-              <div className={`relative w-full h-full min-h-[400px] rounded-2xl overflow-hidden ${theme === 'neon' ? 'opacity-60 mix-blend-lighten' : 'opacity-80'} hover:opacity-100 transition-opacity duration-700`}>
-                 <div className="absolute inset-4 flex items-center justify-center overflow-hidden">
-                    <div className={`w-48 h-48 rounded-full blur-[60px] opacity-30 animate-pulse-slow ${styles.visual}`}></div>
-                    
-                    {id === 'education' && (
-                      <div className="text-center p-6 transform rotate-3">
-                         <span className={`text-9xl mb-4 block ${theme === 'neon' ? 'drop-shadow-[0_0_25px_rgba(188,19,254,0.5)]' : 'drop-shadow-xl text-mech-text'}`}>🎓</span>
-                      </div>
-                    )}
-                    {id === 'experience' && (
-                      <div className="w-full h-full p-4 flex flex-col gap-6 justify-center items-center">
-                         <div className={`h-4 rounded w-3/4 animate-pulse ${theme === 'neon' ? 'bg-neon-cyan/20 shadow-[0_0_10px_rgba(0,243,255,0.2)]' : 'bg-mech-sky/40'}`}></div>
-                         <div className={`h-4 rounded w-1/2 animate-pulse delay-75 ${theme === 'neon' ? 'bg-neon-cyan/20 shadow-[0_0_10px_rgba(0,243,255,0.2)]' : 'bg-mech-sky/40'}`}></div>
-                         <div className={`h-4 rounded w-full animate-pulse delay-150 ${theme === 'neon' ? 'bg-neon-cyan/20 shadow-[0_0_10px_rgba(0,243,255,0.2)]' : 'bg-mech-sky/40'}`}></div>
-                      </div>
-                    )}
-                     {id === 'certificates' && (
-                       <div className="flex flex-col items-center justify-center transform -rotate-3">
-                          <div className={`w-32 h-40 border-2 rounded flex items-center justify-center mb-2 backdrop-blur-sm ${
-                            theme === 'neon' 
-                              ? 'border-neon-green/50 shadow-[0_0_20px_rgba(10,255,100,0.2)] bg-black/40' 
-                              : 'border-mech-emerald/50 bg-white/60 shadow-lg'
-                          }`}>
-                             <div className={`w-16 h-16 rounded-full animate-pulse ${theme === 'neon' ? 'bg-neon-green/30' : 'bg-mech-emerald/30'}`}></div>
-                          </div>
-                       </div>
-                    )}
-                 </div>
+              <div className={`relative w-full h-full min-h-[400px] rounded-2xl overflow-hidden ${theme === 'neon' ? 'opacity-60 mix-blend-lighten' : 'opacity-80 shadow-lg'} hover:opacity-100 transition-opacity duration-700`}>
+                 
+                 {visualImage ? (
+                    <img 
+                      src={visualImage} 
+                      alt={title} 
+                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105 ${theme === 'neon' ? 'opacity-80' : 'opacity-100'}`} 
+                    />
+                 ) : (
+                   <div className="absolute inset-4 flex items-center justify-center overflow-hidden">
+                      <div className={`w-48 h-48 rounded-full blur-[60px] opacity-30 animate-pulse-slow ${styles.visual}`}></div>
+                      {/* Fallback visual icons if no image is provided */}
+                      {id === 'education' && (
+                        <div className="text-center p-6 transform rotate-3">
+                           <span className={`text-9xl mb-4 block ${theme === 'neon' ? 'drop-shadow-[0_0_25px_rgba(188,19,254,0.5)]' : 'drop-shadow-xl text-mech-text'}`}>🎓</span>
+                        </div>
+                      )}
+                   </div>
+                 )}
               </div>
             </motion.div>
           </div>

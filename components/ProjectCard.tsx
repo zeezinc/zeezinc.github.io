@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { TorusKnot, Icosahedron, Box, MeshDistortMaterial, OrbitControls, Cylinder, Tetrahedron } from '@react-three/drei';
+import { TorusKnot, Icosahedron, Box, Torus, Octahedron, Dodecahedron, OrbitControls, Cone } from '@react-three/drei';
 import { Project, Theme } from '../types';
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,55 +17,86 @@ declare global {
   }
 }
 
-const ProjectModel = ({ type, color, hovered, theme }: { type: string, color: string, hovered: boolean, theme: Theme }) => {
+const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number, color: string, hovered: boolean, theme: Theme }) => {
   const meshRef = useRef<any>(null);
 
   useFrame((state) => {
     if (meshRef.current && !hovered) {
-      meshRef.current.rotation.x += 0.01;
-      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.x += 0.005;
+      meshRef.current.rotation.y += 0.005;
     }
   });
 
+  // Dark Mode (Neon) -> Complex Wireframes
   if (theme === 'neon') {
-      return (
-        <>
-          {type === 'torus' && (
-            <TorusKnot args={[1, 0.3, 100, 16]} ref={meshRef}>
-              <MeshDistortMaterial color={color} distort={0.3} speed={2} roughness={0.2} metalness={0.8} />
-            </TorusKnot>
-          )}
-          {type === 'icosahedron' && (
-            <Icosahedron args={[1.5, 0]} ref={meshRef}>
-               <meshStandardMaterial color={color} wireframe />
-            </Icosahedron>
-          )}
-          {type === 'box' && (
-            <Box args={[1.8, 1.8, 1.8]} ref={meshRef}>
-               <meshStandardMaterial color={color} roughness={0.3} metalness={0.7} />
-            </Box>
-          )}
-        </>
+      // Significantly increased emissive intensity and disabled toneMapping for "Neon" glow
+      const material = (
+        <meshStandardMaterial 
+          color={color} 
+          wireframe 
+          wireframeLinewidth={2} 
+          emissive={color} 
+          emissiveIntensity={4}
+          toneMapped={false}
+        />
       );
-  } else {
-      // Mechanical Theme Models - Clean Geometry, Matte Finish
-      const material = <meshStandardMaterial color={color} roughness={0.5} metalness={0.1} />;
+      
       return (
         <group ref={meshRef}>
-             {type === 'torus' && (
-                <Cylinder args={[1, 1, 1, 6]} rotation={[Math.PI/4, Math.PI/4, 0]}>
+           {/* NeuroArt Gen - Sharp Edged Object */}
+           {projectId === 1 && (
+             <Octahedron args={[1.5, 0]}>
+                {material}
+             </Octahedron>
+           )}
+           {/* CogniChat - Geodesic Sphere feel */}
+           {projectId === 2 && (
+             <Icosahedron args={[1.5, 1]}>
+               {material}
+             </Icosahedron>
+           )}
+           {/* VoiceClone - Tech Cube */}
+           {projectId === 3 && (
+             <group>
+               <Box args={[1.5, 1.5, 1.5]}>
+                 {material}
+               </Box>
+               <Box args={[0.8, 0.8, 0.8]} rotation={[Math.PI/4, Math.PI/4, 0]}>
+                 <meshStandardMaterial 
+                    color="#ffffff" 
+                    wireframe 
+                    emissive="#ffffff" 
+                    emissiveIntensity={2} 
+                    toneMapped={false}
+                 />
+               </Box>
+             </group>
+           )}
+        </group>
+      );
+  } else {
+      // Light Mode (Mech) -> Solid Solids
+      const material = <meshStandardMaterial color={color} roughness={0.4} metalness={0.3} />;
+
+      return (
+        <group ref={meshRef}>
+             {/* NeuroArt Gen (or equivalent ID 1 in Mech) - Solid Torus */}
+             {projectId === 1 && (
+                <Torus args={[1.2, 0.4, 16, 50]} rotation={[Math.PI/6, 0, 0]}>
                    {material}
-                </Cylinder>
+                </Torus>
              )}
-             {type === 'icosahedron' && (
-                <Tetrahedron args={[1.8, 0]}>
+             {/* FinTech (ID 2 in Mech) - Solid Octahedron */}
+             {projectId === 2 && (
+                <Octahedron args={[1.6, 0]}>
                    {material}
-                </Tetrahedron>
+                </Octahedron>
              )}
-             {type === 'box' && (
-                <Box args={[1.5, 1.5, 1.5]}>
+             {/* OmniStore Platform (ID 3 in Mech) - Sharp Pyramid/Cone */}
+             {projectId === 3 && (
+                <Cone args={[1.5, 2.5, 4]} rotation={[0, 0, 0]}> {/* 4 segments = Pyramid */}
                    {material}
-                </Box>
+                </Cone>
              )}
         </group>
       )
@@ -81,10 +112,6 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, color, theme }) => {
   const [hovered, setHovered] = useState(false);
 
-  let modelType = 'torus';
-  if (project.id === 2) modelType = 'icosahedron';
-  if (project.id === 3) modelType = 'box';
-
   return (
     <motion.div 
       className={`rounded-xl overflow-hidden border transition-all duration-300 flex flex-col h-full group
@@ -97,17 +124,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, color, theme }) => {
       onMouseLeave={() => setHovered(false)}
       whileHover={{ y: -5 }}
     >
-      <div className={`h-48 w-full relative ${theme === 'neon' ? 'bg-gradient-to-b from-black/20 to-black/80' : 'bg-mech-slate'}`}>
+      <div className={`h-48 w-full relative ${theme === 'neon' ? 'bg-gradient-to-b from-black/20 to-black/80' : 'bg-mech-slate/50'}`}>
         <Canvas camera={{ position: [0, 0, 4] }}>
-          <ambientLight intensity={theme === 'neon' ? 0.5 : 0.8} />
-          <pointLight position={[10, 10, 10]} />
-          <ProjectModel type={modelType} color={color} hovered={hovered} theme={theme} />
+          <ambientLight intensity={theme === 'neon' ? 0.2 : 0.8} />
+          <pointLight position={[10, 10, 10]} intensity={theme === 'neon' ? 1.5 : 0.8} />
+          <ProjectModel projectId={project.id} color={color} hovered={hovered} theme={theme} />
           <OrbitControls enableZoom={true} enablePan={false} autoRotate={false} />
         </Canvas>
         <div className={`absolute top-2 right-2 px-2 py-1 rounded text-xs border ${
             theme === 'neon' 
             ? 'bg-black/60 text-neon-green border-neon-green/30'
-            : 'bg-white/80 text-mech-emerald border-mech-emerald/30'
+            : 'bg-white/90 text-mech-emerald border-mech-emerald/30'
         }`}>
           Interactive 3D
         </div>
