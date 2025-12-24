@@ -45,21 +45,110 @@ declare global {
 
 // --- Neon Theme Components (Space Theme) ---
 
-const Moon = () => {
+const Satellite = () => {
+  const groupRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (groupRef.current) {
+      // Slow complex rotation
+      groupRef.current.rotation.y += 0.005;
+      groupRef.current.rotation.z = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.1;
+    }
+  });
+
   return (
-    <Float speed={0.2} rotationIntensity={0.1} floatIntensity={0.2}>
-      <group position={[6, 3, -5]} rotation={[0, 0, Math.PI / 8]}>
-        {/* Full Moon Geometry - clean sphere without bumps */}
-        <Sphere args={[1.5, 64, 64]}> 
-          <meshStandardMaterial 
-            color="#ffffff" 
-            emissive="#ffffff"
-            emissiveIntensity={1.5}
-            toneMapped={false}
-            roughness={0.2}
-            metalness={0.5}
-          />
-        </Sphere>
+    <Float speed={1} rotationIntensity={0.2} floatIntensity={0.5}>
+      <group position={[6, 3, -5]} rotation={[0.5, -0.5, 0]} ref={groupRef} scale={0.8}>
+        {/* Main Body - Gold Foil Look */}
+        <Box args={[1.5, 2, 1.5]}> 
+           <meshStandardMaterial 
+             color="#fbbf24" // Gold
+             metalness={0.9}
+             roughness={0.3}
+             emissive="#b45309"
+             emissiveIntensity={0.1}
+           />
+        </Box>
+
+        {/* Solar Panels Left */}
+        <group position={[-2.5, 0, 0]}>
+           {/* Connector */}
+           <Cylinder args={[0.1, 0.1, 1.5]} rotation={[0, 0, Math.PI / 2]} position={[1.5, 0, 0]}>
+               <meshStandardMaterial color="#94a3b8" metalness={0.8} />
+           </Cylinder>
+           {/* Panel */}
+           <Box args={[3.5, 1.2, 0.05]}>
+              <meshStandardMaterial 
+                color="#1e3a8a" // Dark Solar Blue
+                roughness={0.2} 
+                metalness={0.8} 
+                emissive="#172554"
+                emissiveIntensity={0.2}
+              />
+           </Box>
+           {/* Grid lines (simulated with thin strips) */}
+           <Box args={[3.5, 0.05, 0.06]} position={[0, 0.3, 0]}>
+             <meshStandardMaterial color="#000" />
+           </Box>
+           <Box args={[3.5, 0.05, 0.06]} position={[0, -0.3, 0]}>
+             <meshStandardMaterial color="#000" />
+           </Box>
+        </group>
+
+        {/* Solar Panels Right */}
+        <group position={[2.5, 0, 0]}>
+           {/* Connector */}
+           <Cylinder args={[0.1, 0.1, 1.5]} rotation={[0, 0, Math.PI / 2]} position={[-1.5, 0, 0]}>
+               <meshStandardMaterial color="#94a3b8" metalness={0.8} />
+           </Cylinder>
+           {/* Panel */}
+           <Box args={[3.5, 1.2, 0.05]}>
+              <meshStandardMaterial 
+                color="#1e3a8a" 
+                roughness={0.2} 
+                metalness={0.8}
+                emissive="#172554"
+                emissiveIntensity={0.2}
+              />
+           </Box>
+           {/* Grid lines */}
+           <Box args={[3.5, 0.05, 0.06]} position={[0, 0.3, 0]}>
+             <meshStandardMaterial color="#000" />
+           </Box>
+           <Box args={[3.5, 0.05, 0.06]} position={[0, -0.3, 0]}>
+             <meshStandardMaterial color="#000" />
+           </Box>
+        </group>
+
+        {/* Comms Dish */}
+        <group position={[0, 1.2, 0]} rotation={[0.4, 0, 0]}>
+           <Cone args={[0.8, 0.4, 32, 1, true]} rotation={[Math.PI, 0, 0]}>
+              <meshStandardMaterial color="#cbd5e1" side={THREE.DoubleSide} metalness={0.5} />
+           </Cone>
+           <Sphere args={[0.15]} position={[0, -0.1, 0]}>
+               <meshStandardMaterial color="#cbd5e1" />
+           </Sphere>
+           {/* Antenna spike */}
+           <Cylinder args={[0.02, 0.02, 0.8]} position={[0, 0.2, 0]}>
+               <meshStandardMaterial color="#cbd5e1" />
+           </Cylinder>
+        </group>
+
+        {/* Tech Sensor Lens */}
+        <group position={[0, 0.5, 0.8]} rotation={[Math.PI / 2, 0, 0]}>
+            <Cylinder args={[0.3, 0.3, 0.2]}>
+                <meshStandardMaterial color="#333" />
+            </Cylinder>
+            <Sphere args={[0.2]} position={[0, 0.1, 0]}>
+                 <meshStandardMaterial 
+                    color="#00f3ff"
+                    emissive="#00f3ff"
+                    emissiveIntensity={5}
+                    toneMapped={false}
+                 />
+            </Sphere>
+        </group>
+
       </group>
     </Float>
   );
@@ -174,7 +263,7 @@ const NeonScene = () => (
     
     <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
     
-    <Moon />
+    <Satellite />
     <UFO />
     <Rocket />
   </>
