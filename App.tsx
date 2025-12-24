@@ -107,7 +107,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
             <a href="#" className={`font-display text-2xl font-bold tracking-widest transition-colors ${theme === 'neon' ? 'text-white hover:text-neon-cyan' : 'text-mech-text hover:text-mech-sky'}`}>
-              {theme === 'neon' ? 'NEON' : 'DEV'}<span className={accentText}>{theme === 'neon' ? 'GEN' : 'OPS'}</span>
+              ZEESHAN<span className={accentText}>SHAIKH</span>
             </a>
           </div>
 
@@ -386,6 +386,7 @@ const App: React.FC = () => {
       }`}>
         <p className="flex items-center justify-center gap-2">
             &copy; {new Date().getFullYear()} {theme === 'neon' ? 'Gen AI Engineer Portfolio' : 'Software Development Portfolio'}. 
+            Made with
             <Heart size={14} className="text-red-500 fill-red-500 animate-pulse" /> 
             by Zeeshan Shaikh.
         </p>
