@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Mail, Download, Cpu, Brain, Award, CheckCircle, Heart, ToggleLeft, ToggleRight } from 'lucide-react';
 import Background3D from './components/Background3D';
@@ -6,21 +6,58 @@ import SectionWrapper from './components/SectionWrapper';
 import SkillsChart from './components/SkillsChart';
 import ProjectCard from './components/ProjectCard';
 import SkillBar from './components/SkillBar';
+import ExperienceTimeline from './components/ExperienceTimeline';
+import SkillCategory from './components/SkillCategory';
 import { AI_PROFILE, SWE_PROFILE, NAV_LINKS } from './constants';
 import { Theme } from './types';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>('neon');
+  const [activeSection, setActiveSection] = useState('hero');
   
   const activeProfile = theme === 'neon' ? AI_PROFILE : SWE_PROFILE;
   
+  // Group skills by category for the accordion view
+  const skillsByCategory = activeProfile.skills.reduce((acc, skill) => {
+    if (!acc[skill.category]) {
+      acc[skill.category] = [];
+    }
+    acc[skill.category].push(skill);
+    return acc;
+  }, {} as Record<string, typeof activeProfile.skills>);
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
+
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // Offset for navbar height + buffer
+
+      const sections = NAV_LINKS.map(link => link.href.substring(1));
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initially
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
@@ -75,37 +112,48 @@ const App: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {/* Theme Toggle Button - Desktop */}
+            {/* Theme Toggle Button - Desktop - Made Bigger */}
             <button 
                 onClick={toggleTheme}
-                className={`flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border transition-all ${
+                className={`flex items-center gap-2 text-sm font-bold uppercase tracking-wider px-5 py-2 rounded-full border-2 transition-all hover:scale-105 active:scale-95 ${
                   theme === 'neon' 
-                    ? 'border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10' 
-                    : 'border-mech-sky text-mech-sky hover:bg-mech-sky/10'
+                    ? 'border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 shadow-[0_0_15px_rgba(0,243,255,0.3)]' 
+                    : 'border-mech-sky text-mech-sky hover:bg-mech-sky/10 shadow-md'
                 }`}
                 title="Switch Theme"
               >
-                {theme === 'neon' ? <Brain size={14} /> : <Cpu size={14} />}
+                {theme === 'neon' ? <Brain size={18} /> : <Cpu size={18} />}
                 <span>{theme === 'neon' ? 'AI' : 'DEV'}</span>
             </button>
 
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => handleNavClick(link.href)}
-                className={`text-sm uppercase tracking-widest transition-colors relative group ${theme === 'neon' ? 'hover:text-neon-cyan' : 'hover:text-mech-sky'}`}
-              >
-                {link.name}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full ${theme === 'neon' ? 'bg-neon-cyan' : 'bg-mech-sky'}`}></span>
-              </button>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <button
+                  key={link.name}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`text-sm uppercase tracking-widest transition-all duration-300 relative group 
+                    ${isActive 
+                      ? (theme === 'neon' ? 'text-neon-cyan drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]' : 'text-mech-sky font-bold') 
+                      : (theme === 'neon' ? 'text-gray-400 hover:text-neon-cyan' : 'text-gray-500 hover:text-mech-sky')
+                    }
+                  `}
+                >
+                  {link.name}
+                  <span className={`absolute -bottom-2 left-0 h-0.5 transition-all duration-300 
+                    ${isActive ? 'w-full' : 'w-0 group-hover:w-full'} 
+                    ${theme === 'neon' ? 'bg-neon-cyan shadow-[0_0_8px_#00f3ff]' : 'bg-mech-sky'}
+                  `}></span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex md:hidden items-center gap-4">
              {/* Theme Toggle Button - Mobile (Compact) */}
              <button 
                 onClick={toggleTheme}
-                className={`p-1 ${theme === 'neon' ? 'text-neon-cyan' : 'text-mech-sky'}`}
+                className={`p-2 rounded-full border ${theme === 'neon' ? 'border-neon-cyan text-neon-cyan' : 'border-mech-sky text-mech-sky'}`}
               >
                 {theme === 'neon' ? <Brain size={20} /> : <Cpu size={20} />}
              </button>
@@ -123,15 +171,24 @@ const App: React.FC = () => {
             className={`md:hidden border-b ${theme === 'neon' ? 'bg-bg-card border-white/10' : 'bg-white border-gray-200'}`}
           >
             <div className="flex flex-col p-6 space-y-4">
-              {NAV_LINKS.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => handleNavClick(link.href)}
-                  className={`text-left text-lg ${theme === 'neon' ? 'hover:text-neon-cyan' : 'hover:text-mech-sky'}`}
-                >
-                  {link.name}
-                </button>
-              ))}
+              {NAV_LINKS.map((link) => {
+                 const isActive = activeSection === link.href.substring(1);
+                 return (
+                  <button
+                    key={link.name}
+                    onClick={() => handleNavClick(link.href)}
+                    className={`text-left text-lg flex items-center gap-2
+                      ${isActive 
+                        ? (theme === 'neon' ? 'text-neon-cyan font-bold' : 'text-mech-sky font-bold') 
+                        : (theme === 'neon' ? 'text-gray-400' : 'text-gray-600')
+                      }
+                    `}
+                  >
+                    {isActive && <span className={`w-2 h-2 rounded-full ${theme === 'neon' ? 'bg-neon-cyan' : 'bg-mech-sky'}`}></span>}
+                    {link.name}
+                  </button>
+                );
+              })}
             </div>
           </motion.div>
         )}
@@ -230,31 +287,9 @@ const App: React.FC = () => {
         </div>
       </SectionWrapper>
 
-      {/* Experience Section - Expanded Full Width */}
+      {/* Experience Section - REPLACED WITH CHRONOLOGICAL TIMELINE */}
       <SectionWrapper id="experience" title="Experience" colorKey="cyan" fullWidth={true} theme={theme}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {activeProfile.experience.map((exp) => (
-            <div key={exp.id} className="group p-6 rounded-xl transition-all duration-300 hover:bg-white/5">
-              <div className="flex justify-between items-baseline mb-2">
-                <h3 className={`text-2xl font-bold transition-colors ${theme === 'neon' ? 'text-white group-hover:text-neon-cyan' : 'text-mech-text group-hover:text-mech-sky'}`}>{exp.role}</h3>
-                <span className="text-sm font-mono text-gray-500">{exp.period}</span>
-              </div>
-              <p className={`${theme === 'neon' ? 'text-neon-cyan/80' : 'text-mech-sky'} text-lg mb-4`}>{exp.company}</p>
-              <p className={`${theme === 'neon' ? 'text-gray-300' : 'text-gray-600'} mb-4 leading-relaxed`}>{exp.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {exp.skills.map((skill, i) => (
-                  <span key={i} className={`px-3 py-1 text-xs border rounded-full ${
-                    theme === 'neon' 
-                    ? 'border-neon-cyan/30 text-neon-cyan/80 bg-neon-cyan/5'
-                    : 'border-mech-sky/30 text-mech-sky bg-mech-sky/5'
-                  }`}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+         <ExperienceTimeline experience={activeProfile.experience} theme={theme} />
       </SectionWrapper>
 
       {/* Projects Section */}
@@ -268,9 +303,9 @@ const App: React.FC = () => {
         </div>
       </SectionWrapper>
 
-      {/* Skills Section */}
+      {/* Skills Section - UPDATED WITH EXPANDABLE CATEGORIES */}
       <SectionWrapper id="skills" title="Technical Arsenal" colorKey="pink" fullWidth={true} theme={theme}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
            <div className="order-2 lg:order-1">
              <div className="mb-8">
                 <h3 className={`text-2xl font-bold mb-4 ${theme === 'neon' ? 'text-white' : 'text-mech-text'}`}>Core Competencies</h3>
@@ -282,35 +317,43 @@ const App: React.FC = () => {
                 </p>
              </div>
              <div>
-                {activeProfile.skills.map((skill, index) => (
-                   <SkillBar key={index} name={skill.name} level={skill.level} delay={index * 0.1} theme={theme} />
+                {Object.entries(skillsByCategory).map(([category, skills], index) => (
+                   <SkillCategory 
+                      key={category} 
+                      category={category} 
+                      skills={skills} 
+                      theme={theme} 
+                      defaultOpen={index === 0} 
+                   />
                 ))}
              </div>
            </div>
            
-           <div className={`order-1 lg:order-2 flex justify-center items-center rounded-full p-4 aspect-square ${theme === 'neon' ? 'bg-black/30' : 'bg-white/50 border border-gray-100 shadow-inner'}`}>
+           <div className={`order-1 lg:order-2 flex justify-center items-center rounded-full p-4 aspect-square sticky top-24 ${theme === 'neon' ? 'bg-black/30' : 'bg-white/50 border border-gray-100 shadow-inner'}`}>
              <SkillsChart skills={activeProfile.skills} theme={theme} />
            </div>
         </div>
       </SectionWrapper>
 
-      {/* Certificates Section - Redesigned */}
+      {/* Certificates Section - UPDATED BADGE VISIBILITY */}
       <SectionWrapper id="certificates" title="Certifications" colorKey="purple" fullWidth={true} theme={theme}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {activeProfile.certificates.map((cert) => (
             <motion.div 
               key={cert.id}
               whileHover={{ scale: 1.02, y: -5 }}
-              className={`relative overflow-hidden p-8 rounded-xl border transition-all duration-300
+              className={`relative overflow-hidden p-8 rounded-xl border transition-all duration-300 group
                 ${theme === 'neon' 
                   ? 'bg-white/5 backdrop-blur-md border-neon-purple/30 hover:shadow-[0_0_25px_rgba(188,19,254,0.3)] hover:border-neon-purple/80'
                   : 'bg-white border-mech-indigo/20 shadow-md hover:shadow-xl hover:border-mech-indigo/50'
                 }
               `}
             >
-               {/* Decorative Background Element */}
-               <div className={`absolute top-0 right-0 p-4 opacity-10 ${theme === 'neon' ? 'text-neon-purple' : 'text-mech-indigo'}`}>
-                  <Award size={100} strokeWidth={1} />
+               {/* Decorative Background Element - INCREASED VISIBILITY */}
+               <div className={`absolute -top-6 -right-6 p-6 transition-all duration-500 transform rotate-12 group-hover:rotate-0 group-hover:scale-110
+                  ${theme === 'neon' ? 'text-neon-purple opacity-20 group-hover:opacity-40' : 'text-mech-indigo opacity-10 group-hover:opacity-25'}
+               `}>
+                  <Award size={140} strokeWidth={1} />
                </div>
 
                <div className="relative z-10 flex flex-col h-full">

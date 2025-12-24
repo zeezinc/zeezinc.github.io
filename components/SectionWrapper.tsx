@@ -33,14 +33,14 @@ const SectionWrapper: React.FC<SectionProps> = ({ id, title, children, alternate
     <section 
       id={id} 
       ref={ref}
-      className={`min-h-screen flex items-center justify-center py-24 px-4 relative overflow-hidden`}
+      className={`flex items-center justify-center py-10 px-4 relative overflow-hidden`} // Reduced padding to py-10
     >
       <div className={`container mx-auto relative z-10 ${fullWidth ? 'max-w-[90%]' : 'max-w-7xl'}`}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
           <h2 className={`font-display text-4xl md:text-5xl font-bold uppercase tracking-wider ${styles.text}`}>
             {title}

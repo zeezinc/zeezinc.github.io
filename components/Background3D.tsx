@@ -58,7 +58,8 @@ const Satellite = () => {
 
   return (
     <Float speed={1} rotationIntensity={0.2} floatIntensity={0.5}>
-      <group position={[6, 3, -5]} rotation={[0.5, -0.5, 0]} ref={groupRef} scale={0.8}>
+      {/* Lowered Y position from 3 to 1.5 to avoid nav collision */}
+      <group position={[6, 1.5, -5]} rotation={[0.5, -0.5, 0]} ref={groupRef} scale={0.8}>
         {/* Main Body - Gold Foil Look */}
         <Box args={[1.5, 2, 1.5]}> 
            <meshStandardMaterial 
@@ -164,7 +165,8 @@ const UFO = () => {
 
   return (
     <Float speed={3} rotationIntensity={0.8} floatIntensity={1.5}>
-      <group position={[-5, 2, -3]} ref={groupRef} scale={0.8}>
+      {/* Lowered Y position from 2 to 0.5 */}
+      <group position={[-5, 0.5, -3]} ref={groupRef} scale={0.8}>
         {/* Dome */}
         <Sphere args={[0.8, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} position={[0, 0.2, 0]}>
            <meshStandardMaterial 
@@ -319,14 +321,18 @@ const MechScene = () => (
     <directionalLight position={[5, 10, 7]} intensity={1.2} color="#fff7ed" />
     <pointLight position={[-5, -5, -5]} intensity={0.5} color="#0ea5e9" />
     
-    {/* Geometric shapes */}
-    {/* Modified Yellow Cross: Larger, more left, a bit up */}
-    <CrossShape position={[-7, -1, -3]} color="#f59e0b" scale={2.5} speed={1.2} /> {/* Amber */}
+    {/* Geometric shapes - Spread out further */}
+    {/* Amber Cross: Far left and lower */}
+    <CrossShape position={[-9, -2, -4]} color="#f59e0b" scale={2.5} speed={1.2} /> 
     
-    <CrossShape position={[3, 1, -2]} color="#0ea5e9" scale={1.5} speed={1} /> {/* Sky */}
-    <MechShape type="octa" position={[-4, 3, -5]} color="#6366f1" scale={1.5} speed={0.8} /> {/* Indigo */}
-    <MechShape type="torus" position={[5, -3, -6]} color="#10b981" scale={1.3} speed={0.5} /> {/* Emerald */}
-    {/* Removed the Black Box MechShape */}
+    {/* Sky Cross: Far right and upper */}
+    <CrossShape position={[8, 2, -4]} color="#0ea5e9" scale={1.5} speed={1} />
+    
+    {/* Indigo Octa: Mid-left and high */}
+    <MechShape type="octa" position={[-5, 4, -6]} color="#6366f1" scale={1.5} speed={0.8} />
+    
+    {/* Emerald Torus: Mid-right and low */}
+    <MechShape type="torus" position={[6, -4, -5]} color="#10b981" scale={1.3} speed={0.5} />
   </>
 );
 

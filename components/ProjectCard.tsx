@@ -27,16 +27,14 @@ const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number,
     }
   });
 
-  // Dark Mode (Neon) -> Complex Wireframes
+  // Dark Mode (Neon) -> Complex Wireframes with Glow
   if (theme === 'neon') {
-      // Significantly increased emissive intensity and disabled toneMapping for "Neon" glow
       const material = (
         <meshStandardMaterial 
           color={color} 
-          wireframe 
-          wireframeLinewidth={2} 
+          wireframe={true}
           emissive={color} 
-          emissiveIntensity={4}
+          emissiveIntensity={2} // Luminous but not blinding
           toneMapped={false}
         />
       );
@@ -66,7 +64,7 @@ const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number,
                     color="#ffffff" 
                     wireframe 
                     emissive="#ffffff" 
-                    emissiveIntensity={2} 
+                    emissiveIntensity={1.5} 
                     toneMapped={false}
                  />
                </Box>
@@ -75,8 +73,15 @@ const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number,
         </group>
       );
   } else {
-      // Light Mode (Mech) -> Solid Solids
-      const material = <meshStandardMaterial color={color} roughness={0.4} metalness={0.3} />;
+      // Light Mode (Mech) -> Professional Metallic Solids
+      const material = (
+        <meshStandardMaterial 
+          color={color} 
+          roughness={0.2} 
+          metalness={0.6} 
+          envMapIntensity={1}
+        />
+      );
 
       return (
         <group ref={meshRef}>
@@ -127,7 +132,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, color, theme }) => {
       <div className={`h-48 w-full relative ${theme === 'neon' ? 'bg-gradient-to-b from-black/20 to-black/80' : 'bg-mech-slate/50'}`}>
         <Canvas camera={{ position: [0, 0, 4] }}>
           <ambientLight intensity={theme === 'neon' ? 0.2 : 0.8} />
-          <pointLight position={[10, 10, 10]} intensity={theme === 'neon' ? 1.5 : 0.8} />
+          <pointLight position={[10, 10, 10]} intensity={theme === 'neon' ? 1.5 : 1.0} />
+          {theme === 'mech' && <pointLight position={[-10, -10, -10]} intensity={0.5} />}
           <ProjectModel projectId={project.id} color={color} hovered={hovered} theme={theme} />
           <OrbitControls enableZoom={true} enablePan={false} autoRotate={false} />
         </Canvas>
