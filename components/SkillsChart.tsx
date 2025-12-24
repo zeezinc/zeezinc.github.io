@@ -1,26 +1,37 @@
 import React from 'react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Tooltip } from 'recharts';
-import { SKILLS } from '../constants';
+import { Skill, Theme } from '../types';
 
-const SkillsChart: React.FC = () => {
+interface SkillsChartProps {
+    skills: Skill[];
+    theme: Theme;
+}
+
+const SkillsChart: React.FC<SkillsChartProps> = ({ skills, theme }) => {
+  const chartColor = theme === 'neon' ? '#bc13fe' : '#6366f1'; // Purple vs Indigo
+  const gridColor = theme === 'neon' ? '#333' : '#cbd5e1';
+  const textColor = theme === 'neon' ? '#aaa' : '#475569';
+  const tooltipBg = theme === 'neon' ? '#0a0a0c' : '#ffffff';
+  const tooltipText = theme === 'neon' ? '#fff' : '#1e293b';
+
   return (
     <div className="w-full h-[300px] md:h-[400px]">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={SKILLS}>
-          <PolarGrid stroke="#333" />
-          <PolarAngleAxis dataKey="name" tick={{ fill: '#aaa', fontSize: 12 }} />
+        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={skills}>
+          <PolarGrid stroke={gridColor} />
+          <PolarAngleAxis dataKey="name" tick={{ fill: textColor, fontSize: 12 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
           <Radar
             name="Skill Level"
             dataKey="level"
-            stroke="#bc13fe"
+            stroke={chartColor}
             strokeWidth={3}
-            fill="#bc13fe"
+            fill={chartColor}
             fillOpacity={0.3}
           />
           <Tooltip 
-            contentStyle={{ backgroundColor: '#0a0a0c', borderColor: '#333', color: '#fff' }}
-            itemStyle={{ color: '#bc13fe' }}
+            contentStyle={{ backgroundColor: tooltipBg, borderColor: gridColor, color: tooltipText }}
+            itemStyle={{ color: chartColor }}
           />
         </RadarChart>
       </ResponsiveContainer>

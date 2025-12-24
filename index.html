@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NeonGen | AI Engineer Portfolio</title>
+    <title>NeonGen | Engineer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <script>
@@ -21,6 +21,14 @@
                 green: '#0aff64',
                 pink: '#ff0055',
               },
+              mech: {
+                sky: '#0ea5e9',      // Replaces Cyan
+                indigo: '#6366f1',   // Replaces Purple
+                emerald: '#10b981',  // Replaces Green
+                amber: '#f59e0b',    // Replaces Pink
+                slate: '#f1f5f9',    // Light BG
+                text: '#1e293b',     // Dark Text
+              },
               bg: {
                 dark: '#030305',
                 card: '#0a0a0c',
@@ -31,6 +39,7 @@
               'neon-pulse-cyan': 'neonPulseCyan 2s infinite',
               'neon-pulse-pink': 'neonPulsePink 2s infinite',
               'spin-slow': 'spin 8s linear infinite',
+              'float': 'float 6s ease-in-out infinite',
             },
             keyframes: {
               neonPulseCyan: {
@@ -40,6 +49,10 @@
               neonPulsePink: {
                 '0%, 100%': { boxShadow: '0 0 5px #ff0055, 0 0 10px #ff0055' },
                 '50%': { boxShadow: '0 0 2px #ff0055, 0 0 5px #ff0055' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
               }
             }
           }
@@ -49,21 +62,21 @@
     <style>
       body {
         background-color: #030305;
-        color: white;
         overflow-x: hidden;
+        transition: background-color 0.5s ease, color 0.5s ease;
       }
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #030305;
+        background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #333;
+        background: #555;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #bc13fe;
+        background: #888;
       }
     </style>
   <script type="importmap">

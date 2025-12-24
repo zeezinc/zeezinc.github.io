@@ -1,12 +1,15 @@
 import { ReactNode } from 'react';
 
+export type Theme = 'neon' | 'mech';
+
 export interface SectionProps {
   id: string;
   title: string;
   children: ReactNode;
   alternate?: boolean;
-  neonColor: 'cyan' | 'purple' | 'green' | 'pink';
+  colorKey: 'cyan' | 'purple' | 'green' | 'pink'; // Abstracted color key
   fullWidth?: boolean;
+  theme: Theme;
 }
 
 export interface Project {
@@ -16,7 +19,6 @@ export interface Project {
   tech: string[];
   image: string;
   link: string;
-  modelType?: 'torus' | 'icosahedron' | 'box'; // For 3D visualization variety
 }
 
 export interface Experience {
@@ -48,4 +50,17 @@ export interface Skill {
   name: string;
   level: number; // 0-100
   category: string;
+}
+
+export interface ProfileData {
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+  };
+  projects: Project[];
+  experience: Experience[];
+  education: Education[];
+  certificates: Certificate[];
+  skills: Skill[];
 }
