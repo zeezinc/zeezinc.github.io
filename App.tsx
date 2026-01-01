@@ -370,12 +370,7 @@ const App: React.FC = () => {
                     </>
                   )}
                   
-                  {/* ID Display - Only visible in Dev/Mech theme */}
-                  {theme !== 'neon' && (
-                    <div className="absolute top-2 right-2 text-[10px] font-mono text-gray-400 opacity-60">
-                      ID: ED-0{index + 1}
-                    </div>
-                  )}
+                  {/* ID Display Removed here */}
 
                   <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-2 mb-2">
                       <div>
