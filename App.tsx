@@ -87,12 +87,12 @@ const App: React.FC = () => {
 
   // Images
   const aboutImage = theme === 'neon'
-    ? 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop' // Neon Portrait/Robot
-    : 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1974&auto=format&fit=crop'; // Clean workspace/Coffee
+    ? 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop'
+    : 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1974&auto=format&fit=crop';
 
   const educationImage = theme === 'neon' 
-    ? 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop' // Abstract Neon Neural Network / Data
-    : 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'; // Modern Corporate/University Interior
+    ? 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop'
+    : 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop';
 
   return (
     <div className={`relative min-h-screen font-sans transition-colors duration-500 ${bgClass} ${selectionClass}`}>
@@ -369,6 +369,13 @@ const App: React.FC = () => {
                       <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/30 group-hover:border-neon-purple transition-colors"></div>
                     </>
                   )}
+                  
+                  {/* ID Display - Only visible in Dev/Mech theme */}
+                  {theme !== 'neon' && (
+                    <div className="absolute top-2 right-2 text-[10px] font-mono text-gray-400 opacity-60">
+                      ID: ED-0{index + 1}
+                    </div>
+                  )}
 
                   <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-2 mb-2">
                       <div>
@@ -389,10 +396,6 @@ const App: React.FC = () => {
                           {edu.year}
                       </span>
                   </div>
-                  
-                  {theme === 'neon' && (
-                      <div className="text-[10px] font-mono text-gray-500 mb-2 tracking-widest uppercase">ID: ED-0{edu.id}</div>
-                  )}
 
                   <p className={`text-sm leading-relaxed ${theme === 'neon' ? 'text-gray-400' : 'text-gray-600'}`}>
                       {edu.details}
