@@ -5,40 +5,29 @@ import * as THREE from 'three';
 import { Theme } from '../types';
 
 // Fix for missing JSX intrinsic elements in TypeScript
+// We need to augment both the global JSX namespace and React's JSX namespace to ensure compatibility
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      // Three.js elements
       ambientLight: any;
       directionalLight: any;
       pointLight: any;
       meshStandardMaterial: any;
       meshBasicMaterial: any;
       group: any;
+    }
+  }
+}
 
-      // Standard HTML elements
-      div: any;
-      span: any;
-      p: any;
-      a: any;
-      img: any;
-      ul: any;
-      li: any;
-      button: any;
-      h1: any;
-      h2: any;
-      h3: any;
-      h4: any;
-      h5: any;
-      h6: any;
-      nav: any;
-      header: any;
-      footer: any;
-      section: any;
-      form: any;
-      input: any;
-      label: any;
-      canvas: any;
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      ambientLight: any;
+      directionalLight: any;
+      pointLight: any;
+      meshStandardMaterial: any;
+      meshBasicMaterial: any;
+      group: any;
     }
   }
 }

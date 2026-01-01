@@ -6,6 +6,30 @@ import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Fix for missing JSX intrinsic elements in TypeScript
+// We need to augment both the global JSX namespace and React's JSX namespace to ensure compatibility
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      ambientLight: any;
+      pointLight: any;
+      meshStandardMaterial: any;
+      group: any;
+    }
+  }
+}
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      ambientLight: any;
+      pointLight: any;
+      meshStandardMaterial: any;
+      group: any;
+    }
+  }
+}
+
+// Fix for missing JSX intrinsic elements in TypeScript
 declare global {
   namespace JSX {
     interface IntrinsicElements {
