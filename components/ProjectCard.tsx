@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { TorusKnot, Icosahedron, Box, Torus, Octahedron, Dodecahedron, OrbitControls, Cone } from '@react-three/drei';
+import { TorusKnot, Icosahedron, Box, Torus, Octahedron, Dodecahedron, OrbitControls, Cone, Cylinder, Sphere, Tetrahedron } from '@react-three/drei';
 import { Project, Theme } from '../types';
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -94,6 +94,46 @@ const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number,
                </Box>
              </group>
            )}
+           {/* Student Info Bot - Complex Dodecahedron */}
+           {projectId === 4 && (
+             <Dodecahedron args={[1.5, 0]}>
+                {material}
+             </Dodecahedron>
+           )}
+           {/* Property Finder - Tetrahedron (Roof/Structure vibe) */}
+           {projectId === 5 && (
+             <group rotation={[Math.PI/4, 0, 0]}>
+                <Tetrahedron args={[1.8]}>
+                   {material}
+                </Tetrahedron>
+                <Octahedron args={[0.5, 0]}>
+                    <meshStandardMaterial 
+                        color="#ffffff" 
+                        wireframe 
+                        emissive="#ffffff" 
+                        emissiveIntensity={1} 
+                        toneMapped={false}
+                    />
+                </Octahedron>
+             </group>
+           )}
+           {/* Third Eye - Vision Eye Structure */}
+           {projectId === 6 && (
+             <group rotation={[Math.PI/2, 0, 0]}>
+               <Sphere args={[0.8, 32, 32]}>
+                 {material}
+               </Sphere>
+               <Torus args={[1.2, 0.1, 16, 100]}>
+                 <meshStandardMaterial 
+                    color="#ffffff" 
+                    wireframe 
+                    emissive="#ffffff" 
+                    emissiveIntensity={1} 
+                    toneMapped={false}
+                 />
+               </Torus>
+             </group>
+           )}
         </group>
       );
   } else {
@@ -126,6 +166,31 @@ const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number,
                 <Cone args={[1.5, 2.5, 4]} rotation={[0, 0, 0]}> {/* 4 segments = Pyramid */}
                    {material}
                 </Cone>
+             )}
+             {/* Facility Management (ID 4) - Modular Boxes */}
+             {projectId === 4 && (
+                <group>
+                  <Box args={[1.2, 1.2, 1.2]} position={[-0.4, -0.4, 0]}>
+                     {material}
+                  </Box>
+                  <Box args={[1, 1, 1]} position={[0.5, 0.5, 0.5]}>
+                     <meshStandardMaterial color={color} roughness={0.2} metalness={0.8} />
+                  </Box>
+                </group>
+             )}
+             {/* Payroll (ID 5) - Cylinder Stack (Coins/Database) - Distinct from ID 3 */}
+             {projectId === 5 && (
+                <group rotation={[Math.PI/6, 0, 0]}>
+                  <Cylinder args={[1, 1, 0.5, 32]} position={[0, 0.6, 0]}>
+                     {material}
+                  </Cylinder>
+                  <Cylinder args={[1, 1, 0.5, 32]} position={[0, 0, 0]}>
+                     {material}
+                  </Cylinder>
+                  <Cylinder args={[1, 1, 0.5, 32]} position={[0, -0.6, 0]}>
+                     {material}
+                  </Cylinder>
+                </group>
              )}
         </group>
       )
@@ -178,7 +243,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, color, theme }) => {
           <a href={project.link} className={`${theme === 'neon' ? 'text-gray-400 hover:text-neon-green' : 'text-gray-500 hover:text-mech-emerald'} transition-colors`}><ExternalLink size={18} /></a>
         </div>
         
-        <p className={`text-sm mb-6 flex-1 ${theme === 'neon' ? 'text-gray-400' : 'text-gray-600'}`}>{project.description}</p>
+        <p className={`text-sm mb-6 flex-1 overflow-y-auto pr-2 ${theme === 'neon' ? 'text-gray-400' : 'text-gray-600'}`}>{project.description}</p>
         
         <div className="flex flex-wrap gap-2 mt-auto">
           {project.tech.map((t, i) => (
