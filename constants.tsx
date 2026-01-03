@@ -152,17 +152,17 @@ export const AI_PROFILE: ProfileData = {
   ],
   skills: [
     // Programming & Backend
-    { name: "Python", level: 95, category: "Programming & Backend" },
-    { name: "FastAPI", level: 92, category: "Programming & Backend" },
-    { name: "Flask / Django", level: 85, category: "Programming & Backend" },
+    { name: "Python", level: 75, category: "Programming & Backend" },
+    { name: "FastAPI", level: 82, category: "Programming & Backend" },
+    { name: "Flask / Django", level: 75, category: "Programming & Backend" },
 
     // AI & Machine Learning
-    { name: "RAG / CAG Pipelines", level: 95, category: "AI & Machine Learning" },
-    { name: "LangChain / LlamaIndex", level: 92, category: "AI & Machine Learning" },
-    { name: "Transformers (HuggingFace)", level: 90, category: "AI & Machine Learning" },
+    { name: "RAG / CAG Pipelines", level: 85, category: "AI & Machine Learning" },
+    { name: "LangChain / LlamaIndex", level: 82, category: "AI & Machine Learning" },
+    { name: "Transformers (HuggingFace)", level: 80, category: "AI & Machine Learning" },
     { name: "Large Language Models", level: 88, category: "AI & Machine Learning" },
-    { name: "PyTorch / TensorFlow (ML)", level: 40, category: "AI & Machine Learning" },
-    { name: "NLP / Embeddings", level: 92, category: "AI & Machine Learning" },
+    { name: "PyTorch / TensorFlow (ML)", level: 60, category: "AI & Machine Learning" },
+    { name: "NLP / Embeddings", level: 72, category: "AI & Machine Learning" },
 
     // Document & Data Processing
     { name: "Document Parsing / OCR", level: 92, category: "Document & Data Processing" },
@@ -171,34 +171,34 @@ export const AI_PROFILE: ProfileData = {
 
     // Automation & Pipelines
     { name: "AI Agent Workflows", level: 70, category: "Automation & Pipelines" },
-    { name: "Task Orchestration / Async Pipelines", level: 85, category: "Automation & Pipelines" },
+    { name: "Task Orchestration / Async Pipelines", level: 65, category: "Automation & Pipelines" },
 
     // Data Engineering & Analysis
-    { name: "Pandas / NumPy", level: 60, category: "Data Engineering & Analysis" },
-    { name: "Data Transformation & ETL", level: 55, category: "Data Engineering & Analysis" },
+    { name: "Pandas / NumPy", level: 50, category: "Data Engineering & Analysis" },
+    { name: "Data Transformation & ETL", level: 45, category: "Data Engineering & Analysis" },
 
     // APIs & Integrations
     { name: "REST APIs / OAuth", level: 92, category: "APIs & Integrations" },
-    { name: "Third-Party AI / Cloud Integrations", level: 85, category: "APIs & Integrations" },
+    { name: "Third-Party AI / Cloud Integrations", level: 75, category: "APIs & Integrations" },
 
     // Databases
-    { name: "Vector DBs (Chroma / Qdrant)", level: 92, category: "Databases" },
-    { name: "PostgreSQL / Snowflake", level: 88, category: "Databases" },
-    { name: "Redis / Caching", level: 85, category: "Databases" },
+    { name: "Vector DBs (Chroma / Qdrant)", level: 82, category: "Databases" },
+    { name: "PostgreSQL / Snowflake", level: 78, category: "Databases" },
+    { name: "Redis / Caching", level: 75, category: "Databases" },
 
     // Testing
-    { name: "PyTest / Postman", level: 85, category: "Testing" },
+    { name: "PyTest / Postman", level: 75, category: "Testing" },
 
     // DevOps & Deployment
-    { name: "Docker / Containerization", level: 88, category: "DevOps & Deployment" },
-    { name: "CI/CD (GitHub Actions / Jenkins)", level: 82, category: "DevOps & Deployment" },
+    { name: "Docker / Containerization", level: 68, category: "DevOps & Deployment" },
+    { name: "CI/CD (GitHub Actions / Jenkins)", level: 72, category: "DevOps & Deployment" },
 
     // Version Control
-    { name: "Git / Version Control", level: 92, category: "Version Control" },
+    { name: "Git / Version Control", level: 72, category: "Version Control" },
 
     // Architecture
-    { name: "RAG / Retrieval-Augmented Architecture", level: 95, category: "Architecture" },
-    { name: "Event-Driven / Async Workflows", level: 88, category: "Architecture" }
+    { name: "RAG / Retrieval-Augmented Architecture", level: 75, category: "Architecture" },
+    { name: "Event-Driven / Async Workflows", level: 78, category: "Architecture" }
   ]
 };
 
@@ -336,17 +336,17 @@ export const SWE_PROFILE: ProfileData = {
   skills: [
     // BACK END
     { name: "Java", level: 85, category: "Back End" },
-    { name: "Spring Boot / MVC", level: 92, category: "Back End" },
+    { name: "Spring Boot / MVC", level: 82, category: "Back End" },
     { name: "REST API Development", level: 90, category: "Back End" },
 
     // FRONT END
-    { name: "JavaScript / ES6+", level: 75, category: "Front End" },
-    { name: "HTML / CSS / Bootstrap / Tailwind", level: 68, category: "Front End" },
+    { name: "JavaScript", level: 85, category: "Front End" },
+    { name: "HTML / CSS / Bootstrap / Tailwind", level: 78, category: "Front End" },
     { name: "React", level: 65, category: "Front End" },
 
     // ARCHITECTURE
-    { name: "Microservices / SOA", level: 88, category: "Architecture" },
-    { name: "Monolithic Applications", level: 95, category: "Architecture" },
+    { name: "Microservices / SOA", level: 68, category: "Architecture" },
+    { name: "Monolithic Applications", level: 85, category: "Architecture" },
     { name: "Service Oriented Design", level: 80, category: "Architecture" },
 
     // ORM
@@ -362,27 +362,27 @@ export const SWE_PROFILE: ProfileData = {
     { name: "Postman / Swagger UI", level: 88, category: "Testing" },
 
     // VERSION CONTROL
-    { name: "Git / Bitbucket / GitHub", level: 92, category: "Version Control" },
+    { name: "Git / Bitbucket / GitHub", level: 82, category: "Version Control" },
 
     // BUILD AND DEPLOYMENT TOOLS
-    { name: "Maven / Gradle", level: 88, category: "Build & Deployment" },
-    { name: "Docker / Containerization", level: 85, category: "Build & Deployment" },
-    { name: "CI/CD (GitHub Actions / Jenkins)", level: 80, category: "Build & Deployment" },
+    { name: "Maven", level: 78, category: "Build & Deployment" },
+    { name: "Docker / Containerization", level: 75, category: "Build & Deployment" },
+    { name: "CI/CD (GitHub Actions / Jenkins)", level: 70, category: "Build & Deployment" },
 
     // APPLICATION SERVERS
     { name: "Apache Tomcat", level: 88, category: "App Servers" },
 
     // COMMUNICATION
     { name: "REST API / JSON", level: 95, category: "Communication" },
-    { name: "Kafka / Async Processing (basic)", level: 70, category: "Communication" },
+    { name: "Kafka / Async Processing (basic)", level: 60, category: "Communication" },
 
     // CLOUD
-    { name: "AWS (EC2, S3, ECS, Secrets Manager)", level: 80, category: "Cloud" },
+    { name: "AWS (EC2, S3, ECS, Secrets Manager)", level: 70, category: "Cloud" },
 
     // SOFT SKILLS
-    { name: "Problem Solving", level: 95, category: "Soft Skills" },
-    { name: "Communication", level: 92, category: "Soft Skills" },
-    { name: "Adaptability", level: 90, category: "Soft Skills" },
-    { name: "Critical Thinking / Creativity", level: 90, category: "Soft Skills" }
+    { name: "Problem Solving", level: 85, category: "Soft Skills" },
+    { name: "Communication", level: 82, category: "Soft Skills" },
+    { name: "Adaptability", level: 80, category: "Soft Skills" },
+    { name: "Critical Thinking / Creativity", level: 80, category: "Soft Skills" }
   ]
 };
