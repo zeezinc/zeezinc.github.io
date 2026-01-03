@@ -27,8 +27,40 @@ const App: React.FC = () => {
     return acc;
   }, {} as Record<string, typeof activeProfile.skills>);
 
-  // Filter top 6 skills for the Radar Chart to keep it clean and readable
-  const chartSkills = [...activeProfile.skills].sort((a, b) => b.level - a.level).slice(0, 6);
+  // Define High-Level Categories for the Radar Chart (Hexagon Shape)
+  const aiChartGroups: Record<string, string[]> = {
+    "AI & ML": ["AI & Machine Learning"],
+    "Backend": ["Programming & Backend", "APIs & Integrations"],
+    "Data": ["Databases","Document & Data Processing", "Data Engineering & Analysis"],
+    "Architecture": ["Architecture", "Automation & Pipelines"],
+    "DevOps": ["DevOps & Deployment", "Version Control"],
+    "Testing": ["Testing"]
+  };
+
+  const sweChartGroups: Record<string, string[]> = {
+    "Backend": ["Back End", "App Servers", "Testing"],
+    "Frontend": ["Front End"],
+    "Data": ["Database","ORM"],
+    "Architecture": ["Architecture", "Communication"],
+    "DevOps": ["Cloud", "Build & Deployment", "Version Control"],
+    "Soft Skills": ["Soft Skills"]
+  };
+
+  const currentChartGroups = theme === 'neon' ? aiChartGroups : sweChartGroups;
+
+  // Calculate average score for each chart group
+  const chartSkills = Object.entries(currentChartGroups).map(([groupName, categories]) => {
+    const relevantSkills = activeProfile.skills.filter(skill => 
+      categories.includes(skill.category)
+    );
+    
+    if (relevantSkills.length === 0) return { name: groupName, level: 0, category: 'Group' };
+    
+    const total = relevantSkills.reduce((sum, skill) => sum + skill.level, 0);
+    const average = Math.round(total / relevantSkills.length);
+    
+    return { name: groupName, level: average, category: 'Group' };
+  });
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
