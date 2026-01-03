@@ -128,27 +128,27 @@ export const AI_PROFILE: ProfileData = {
     },
   ],
   certificates: [
-    {
-      id: 1,
-      name: "TensorFlow Developer Certificate",
-      issuer: "Google",
-      date: "2021",
-      link: "#"
-    },
-    {
-      id: 2,
-      name: "Deep Learning Specialization",
-      issuer: "Coursera",
-      date: "2020",
-      link: "#"
-    },
-    {
-      id: 3,
-      name: "AWS Certified ML - Specialty",
-      issuer: "Amazon Web Services",
-      date: "2022",
-      link: "#"
-    }
+    // {
+    //   id: 1,
+    //   name: "TensorFlow Developer Certificate",
+    //   issuer: "Google",
+    //   date: "2021",
+    //   link: "#"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Deep Learning Specialization",
+    //   issuer: "Coursera",
+    //   date: "2020",
+    //   link: "#"
+    // },
+    // {
+    //   id: 3,
+    //   name: "AWS Certified ML - Specialty",
+    //   issuer: "Amazon Web Services",
+    //   date: "2022",
+    //   link: "#"
+    // }
   ],
   skills: [
     // Programming & Backend
