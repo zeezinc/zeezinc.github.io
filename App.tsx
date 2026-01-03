@@ -27,6 +27,9 @@ const App: React.FC = () => {
     return acc;
   }, {} as Record<string, typeof activeProfile.skills>);
 
+  // Filter top 6 skills for the Radar Chart to keep it clean and readable
+  const chartSkills = [...activeProfile.skills].sort((a, b) => b.level - a.level).slice(0, 6);
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -444,7 +447,7 @@ const App: React.FC = () => {
            </div>
            
            <div className={`order-1 lg:order-2 flex justify-center items-center rounded-full p-4 aspect-square sticky top-24 ${theme === 'neon' ? 'bg-black/30' : 'bg-white/50 border border-gray-100 shadow-inner'}`}>
-             <SkillsChart skills={activeProfile.skills} theme={theme} />
+             <SkillsChart skills={chartSkills} theme={theme} />
            </div>
         </div>
       </SectionWrapper>

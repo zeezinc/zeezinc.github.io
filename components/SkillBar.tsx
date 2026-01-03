@@ -16,7 +16,7 @@ const SkillBar: React.FC<SkillBarProps> = ({ name, level, delay = 0, theme }) =>
   const fillClass = theme === 'neon' ? 'bg-neon-pink shadow-[0_0_8px_#ff0055]' : 'bg-mech-amber';
 
   return (
-    <div className="mb-6">
+    <div className="w-full">
       <div className="flex justify-between mb-2">
         <span className={`${textColor} font-bold tracking-wide`}>{name}</span>
         <span className={`${accentColor} font-mono`}>{level}%</span>

@@ -151,12 +151,52 @@ export const AI_PROFILE: ProfileData = {
     }
   ],
   skills: [
-    { name: "Large Language Models", level: 95, category: "AI" },
-    { name: "Computer Vision", level: 85, category: "AI" },
-    { name: "PyTorch / TensorFlow", level: 90, category: "Frameworks" },
-    { name: "React / TypeScript", level: 80, category: "Frontend" },
-    { name: "Python", level: 98, category: "Languages" },
-    { name: "Cloud Architecture", level: 75, category: "Infrastructure" },
+    // Programming & Backend
+    { name: "Python", level: 98, category: "Programming & Backend" },
+    { name: "FastAPI", level: 95, category: "Programming & Backend" },
+    { name: "Flask / Django", level: 88, category: "Programming & Backend" },
+    
+    // AI & Machine Learning
+    { name: "RAG Pipelines", level: 98, category: "AI & Machine Learning" },
+    { name: "LangChain / LlamaIndex", level: 95, category: "AI & Machine Learning" },
+    { name: "Transformers (HF)", level: 92, category: "AI & Machine Learning" },
+    { name: "Groq / Vertex AI", level: 90, category: "AI & Machine Learning" },
+    { name: "PyTorch / TensorFlow", level: 85, category: "AI & Machine Learning" },
+    { name: "NLP / Embeddings", level: 94, category: "AI & Machine Learning" },
+
+    // Document & Data Processing
+    { name: "Doc Parsing / OCR", level: 95, category: "Document & Data Processing" },
+    { name: "Computer Vision (YOLO)", level: 82, category: "Document & Data Processing" },
+    { name: "Unstructured / PyMuPDF", level: 90, category: "Document & Data Processing" },
+
+    // Automation & Pipelines
+    { name: "AI Agent Workflows", level: 95, category: "Automation & Pipelines" },
+    { name: "Task Orchestration", level: 88, category: "Automation & Pipelines" },
+
+    // Data Engineering & Analysis
+    { name: "Pandas / NumPy", level: 92, category: "Data Engineering & Analysis" },
+
+    // APIs & Integrations
+    { name: "REST APIs / OAuth", level: 95, category: "APIs & Integrations" },
+    
+    // Databases
+    { name: "Vector DBs (Chroma/Qdrant)", level: 96, category: "Databases" },
+    { name: "PostgreSQL / Snowflake", level: 88, category: "Databases" },
+    { name: "Redis", level: 85, category: "Databases" },
+
+    // Testing
+    { name: "PyTest / Postman", level: 85, category: "Testing" },
+
+    // DevOps & Deployment
+    { name: "Docker / AWS", level: 90, category: "DevOps & Deployment" },
+    { name: "CI/CD (GitHub/Jenkins)", level: 85, category: "DevOps & Deployment" },
+
+    // Version Control
+    { name: "Git / Version Control", level: 95, category: "Version Control" },
+
+    // Architecture
+    { name: "RAG Architecture", level: 97, category: "Architecture" },
+    { name: "Event-Driven Workflows", level: 92, category: "Architecture" },
   ]
 };
 

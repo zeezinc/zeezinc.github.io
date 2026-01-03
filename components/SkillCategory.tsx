@@ -69,7 +69,7 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, skills, theme, 
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <div className={`p-4 pt-0 border-t ${theme === 'neon' ? 'border-white/5' : 'border-gray-100'}`}>
-              <div className="mt-4 space-y-1">
+              <div className="mt-4 flex flex-col gap-6">
                 {skills.map((skill, index) => (
                   <SkillBar 
                     key={`${category}-${skill.name}`} 

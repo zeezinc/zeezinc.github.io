@@ -6,7 +6,6 @@ import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Fix for missing JSX intrinsic elements in TypeScript
-// We need to augment both the global JSX namespace and React's JSX namespace to ensure compatibility
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -19,18 +18,6 @@ declare global {
 }
 
 declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      pointLight: any;
-      meshStandardMaterial: any;
-      group: any;
-    }
-  }
-}
-
-// Fix for missing JSX intrinsic elements in TypeScript
-declare global {
   namespace JSX {
     interface IntrinsicElements {
       ambientLight: any;
@@ -240,7 +227,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, color, theme }) => {
           <h3 className={`text-xl font-bold transition-colors ${theme === 'neon' ? 'text-white group-hover:text-neon-green' : 'text-mech-text group-hover:text-mech-emerald'}`}>
               {project.title}
           </h3>
-          <a href={project.link} className={`${theme === 'neon' ? 'text-gray-400 hover:text-neon-green' : 'text-gray-500 hover:text-mech-emerald'} transition-colors`}><ExternalLink size={18} /></a>
+          <a 
+            href={project.link} 
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View Project"
+            className={`${theme === 'neon' ? 'text-gray-400 hover:text-neon-green' : 'text-gray-500 hover:text-mech-emerald'} transition-colors`}
+          >
+            <ExternalLink size={18} />
+          </a>
         </div>
         
         <p className={`text-sm mb-6 flex-1 overflow-y-auto pr-2 ${theme === 'neon' ? 'text-gray-400' : 'text-gray-600'}`}>{project.description}</p>
