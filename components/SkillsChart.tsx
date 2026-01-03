@@ -32,6 +32,7 @@ const SkillsChart: React.FC<SkillsChartProps> = ({ skills, theme }) => {
           <Tooltip 
             contentStyle={{ backgroundColor: tooltipBg, borderColor: gridColor, color: tooltipText }}
             itemStyle={{ color: chartColor }}
+            cursor={{ stroke: theme === 'neon' ? '#ccc' : '#6366f1', strokeWidth: 1 }}
           />
         </RadarChart>
       </ResponsiveContainer>
