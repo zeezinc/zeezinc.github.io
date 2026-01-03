@@ -152,51 +152,53 @@ export const AI_PROFILE: ProfileData = {
   ],
   skills: [
     // Programming & Backend
-    { name: "Python", level: 98, category: "Programming & Backend" },
-    { name: "FastAPI", level: 95, category: "Programming & Backend" },
-    { name: "Flask / Django", level: 88, category: "Programming & Backend" },
-    
+    { name: "Python", level: 95, category: "Programming & Backend" },
+    { name: "FastAPI", level: 92, category: "Programming & Backend" },
+    { name: "Flask / Django", level: 85, category: "Programming & Backend" },
+
     // AI & Machine Learning
-    { name: "RAG Pipelines", level: 98, category: "AI & Machine Learning" },
-    { name: "LangChain / LlamaIndex", level: 95, category: "AI & Machine Learning" },
-    { name: "Transformers (HF)", level: 92, category: "AI & Machine Learning" },
-    { name: "Groq / Vertex AI", level: 90, category: "AI & Machine Learning" },
-    { name: "PyTorch / TensorFlow", level: 85, category: "AI & Machine Learning" },
-    { name: "NLP / Embeddings", level: 94, category: "AI & Machine Learning" },
+    { name: "RAG / CAG Pipelines", level: 95, category: "AI & Machine Learning" },
+    { name: "LangChain / LlamaIndex", level: 92, category: "AI & Machine Learning" },
+    { name: "Transformers (HuggingFace)", level: 90, category: "AI & Machine Learning" },
+    { name: "Large Language Models", level: 88, category: "AI & Machine Learning" },
+    { name: "PyTorch / TensorFlow (ML)", level: 40, category: "AI & Machine Learning" },
+    { name: "NLP / Embeddings", level: 92, category: "AI & Machine Learning" },
 
     // Document & Data Processing
-    { name: "Doc Parsing / OCR", level: 95, category: "Document & Data Processing" },
-    { name: "Computer Vision (YOLO)", level: 82, category: "Document & Data Processing" },
-    { name: "Unstructured / PyMuPDF", level: 90, category: "Document & Data Processing" },
+    { name: "Document Parsing / OCR", level: 92, category: "Document & Data Processing" },
+    { name: "Computer Vision (YOLO / OpenCV)", level: 80, category: "Document & Data Processing" },
+    { name: "Unstructured Data Handling (PyMuPDF, PDF, CSV, PPT)", level: 88, category: "Document & Data Processing" },
 
     // Automation & Pipelines
-    { name: "AI Agent Workflows", level: 95, category: "Automation & Pipelines" },
-    { name: "Task Orchestration", level: 88, category: "Automation & Pipelines" },
+    { name: "AI Agent Workflows", level: 70, category: "Automation & Pipelines" },
+    { name: "Task Orchestration / Async Pipelines", level: 85, category: "Automation & Pipelines" },
 
     // Data Engineering & Analysis
-    { name: "Pandas / NumPy", level: 92, category: "Data Engineering & Analysis" },
+    { name: "Pandas / NumPy", level: 60, category: "Data Engineering & Analysis" },
+    { name: "Data Transformation & ETL", level: 55, category: "Data Engineering & Analysis" },
 
     // APIs & Integrations
-    { name: "REST APIs / OAuth", level: 95, category: "APIs & Integrations" },
-    
+    { name: "REST APIs / OAuth", level: 92, category: "APIs & Integrations" },
+    { name: "Third-Party AI / Cloud Integrations", level: 85, category: "APIs & Integrations" },
+
     // Databases
-    { name: "Vector DBs (Chroma/Qdrant)", level: 96, category: "Databases" },
+    { name: "Vector DBs (Chroma / Qdrant)", level: 92, category: "Databases" },
     { name: "PostgreSQL / Snowflake", level: 88, category: "Databases" },
-    { name: "Redis", level: 85, category: "Databases" },
+    { name: "Redis / Caching", level: 85, category: "Databases" },
 
     // Testing
     { name: "PyTest / Postman", level: 85, category: "Testing" },
 
     // DevOps & Deployment
-    { name: "Docker / AWS", level: 90, category: "DevOps & Deployment" },
-    { name: "CI/CD (GitHub/Jenkins)", level: 85, category: "DevOps & Deployment" },
+    { name: "Docker / Containerization", level: 88, category: "DevOps & Deployment" },
+    { name: "CI/CD (GitHub Actions / Jenkins)", level: 82, category: "DevOps & Deployment" },
 
     // Version Control
-    { name: "Git / Version Control", level: 95, category: "Version Control" },
+    { name: "Git / Version Control", level: 92, category: "Version Control" },
 
     // Architecture
-    { name: "RAG Architecture", level: 97, category: "Architecture" },
-    { name: "Event-Driven Workflows", level: 92, category: "Architecture" },
+    { name: "RAG / Retrieval-Augmented Architecture", level: 95, category: "Architecture" },
+    { name: "Event-Driven / Async Workflows", level: 88, category: "Architecture" }
   ]
 };
 
@@ -311,32 +313,76 @@ export const SWE_PROFILE: ProfileData = {
   certificates: [
     {
       id: 1,
-      name: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
+      name: "Build, Containerize, and Deploy Spring Boot Apps",
+      issuer: "Google",
       date: "2022",
-      link: "#"
+      link: "https://developers.google.com/profile/badges/playlists/cloud/cloud-containerize-deploy-spring-boot"
     },
     {
       id: 2,
-      name: "Professional Cloud Developer",
-      issuer: "Google Cloud",
-      date: "2021",
-      link: "#"
-    },
-    {
-      id: 3,
-      name: "Certified Kubernetes Administrator",
-      issuer: "CNCF",
-      date: "2023",
-      link: "#"
+      name: "Master Document Management System With Alfresco",
+      issuer: "Udemy",
+      date: "2025",
+      link: "https://www.udemy.com/certificate/UC-bb133a7e-b863-4684-8d2f-1156ab0b8166/"
     }
+    // ,{
+    //   id: 3,
+    //   name: "Certified Kubernetes Administrator",
+    //   issuer: "CNCF",
+    //   date: "2023",
+    //   link: "#"
+    // }
   ],
   skills: [
-    { name: "System Design", level: 90, category: "Architecture" },
-    { name: "React / Frontend", level: 95, category: "Frontend" },
-    { name: "Node.js / Backend", level: 85, category: "Backend" },
-    { name: "DevOps / CI/CD", level: 80, category: "Ops" },
-    { name: "Database Design", level: 85, category: "Data" },
-    { name: "Cloud Services", level: 88, category: "Infrastructure" },
+    // BACK END
+    { name: "Java", level: 85, category: "Back End" },
+    { name: "Spring Boot / MVC", level: 92, category: "Back End" },
+    { name: "REST API Development", level: 90, category: "Back End" },
+
+    // FRONT END
+    { name: "JavaScript / ES6+", level: 75, category: "Front End" },
+    { name: "HTML / CSS / Bootstrap / Tailwind", level: 68, category: "Front End" },
+    { name: "React", level: 65, category: "Front End" },
+
+    // ARCHITECTURE
+    { name: "Microservices / SOA", level: 88, category: "Architecture" },
+    { name: "Monolithic Applications", level: 95, category: "Architecture" },
+    { name: "Service Oriented Design", level: 80, category: "Architecture" },
+
+    // ORM
+    { name: "JPA / Hibernate", level: 88, category: "ORM" },
+
+    // DATABASE
+    { name: "MySQL", level: 90, category: "Database" },
+    { name: "PostgreSQL", level: 85, category: "Database" },
+    { name: "Redshift (Basic Analytics)", level: 75, category: "Database" },
+
+    // TESTING
+    { name: "JUnit / Mockito", level: 85, category: "Testing" },
+    { name: "Postman / Swagger UI", level: 88, category: "Testing" },
+
+    // VERSION CONTROL
+    { name: "Git / Bitbucket / GitHub", level: 92, category: "Version Control" },
+
+    // BUILD AND DEPLOYMENT TOOLS
+    { name: "Maven / Gradle", level: 88, category: "Build & Deployment" },
+    { name: "Docker / Containerization", level: 85, category: "Build & Deployment" },
+    { name: "CI/CD (GitHub Actions / Jenkins)", level: 80, category: "Build & Deployment" },
+
+    // APPLICATION SERVERS
+    { name: "Apache Tomcat", level: 88, category: "App Servers" },
+
+    // COMMUNICATION
+    { name: "REST API / JSON", level: 95, category: "Communication" },
+    { name: "Kafka / Async Processing (basic)", level: 70, category: "Communication" },
+
+    // CLOUD
+    { name: "AWS (EC2, S3, ECS, Secrets Manager)", level: 80, category: "Cloud" },
+
+    // SOFT SKILLS
+    { name: "Problem Solving", level: 95, category: "Soft Skills" },
+    { name: "Communication", level: 92, category: "Soft Skills" },
+    { name: "Adaptability", level: 90, category: "Soft Skills" },
+    { name: "Critical Thinking / Creativity", level: 90, category: "Soft Skills" }
   ]
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Code, Server, Database, Cloud, Cpu, Terminal, Layers } from 'lucide-react';
+import { ChevronDown, Code, Server, Database, Cloud, Cpu, Terminal, Layers, Brain, GitBranch, MessageSquare, CheckCircle, Box } from 'lucide-react';
 import SkillBar from './SkillBar';
 import { Skill, Theme } from '../types';
 
@@ -15,12 +15,16 @@ const getCategoryIcon = (category: string, theme: Theme) => {
   const props = { size: 20, className: theme === 'neon' ? 'text-neon-pink' : 'text-mech-amber' };
   const lower = category.toLowerCase();
   
-  if (lower.includes('frontend') || lower.includes('web')) return <Code {...props} />;
-  if (lower.includes('backend') || lower.includes('server')) return <Server {...props} />;
-  if (lower.includes('data') || lower.includes('db')) return <Database {...props} />;
+  if (lower.includes('frontend') || lower.includes('web') || lower.includes('ui')) return <Code {...props} />;
+  if (lower.includes('backend') || lower.includes('server') || lower.includes('app servers')) return <Server {...props} />;
+  if (lower.includes('data') || lower.includes('db') || lower.includes('orm')) return <Database {...props} />;
   if (lower.includes('cloud') || lower.includes('infra')) return <Cloud {...props} />;
   if (lower.includes('ai') || lower.includes('ml')) return <Cpu {...props} />;
-  if (lower.includes('ops') || lower.includes('devops')) return <Terminal {...props} />;
+  if (lower.includes('ops') || lower.includes('devops') || lower.includes('build')) return <Terminal {...props} />;
+  if (lower.includes('testing')) return <CheckCircle {...props} />;
+  if (lower.includes('version')) return <GitBranch {...props} />;
+  if (lower.includes('comm')) return <MessageSquare {...props} />;
+  if (lower.includes('soft') || lower.includes('skills')) return <Brain {...props} />;
   
   return <Layers {...props} />;
 };
