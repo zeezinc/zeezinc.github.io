@@ -5,29 +5,6 @@ import { Project, Theme } from '../types';
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Fix for missing JSX intrinsic elements in TypeScript
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      pointLight: any;
-      meshStandardMaterial: any;
-      group: any;
-    }
-  }
-}
-
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      pointLight: any;
-      meshStandardMaterial: any;
-      group: any;
-    }
-  }
-}
-
 const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number, color: string, hovered: boolean, theme: Theme }) => {
   const meshRef = useRef<any>(null);
 

@@ -4,34 +4,6 @@ import { Float, Stars, Torus, Octahedron, Box, Sphere, Cone, Cylinder } from '@r
 import * as THREE from 'three';
 import { Theme } from '../types';
 
-// Fix for missing JSX intrinsic elements in TypeScript
-// We need to augment both the global JSX namespace and React's JSX namespace to ensure compatibility
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      directionalLight: any;
-      pointLight: any;
-      meshStandardMaterial: any;
-      meshBasicMaterial: any;
-      group: any;
-    }
-  }
-}
-
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      directionalLight: any;
-      pointLight: any;
-      meshStandardMaterial: any;
-      meshBasicMaterial: any;
-      group: any;
-    }
-  }
-}
-
 // --- Neon Theme Components (Space Theme) ---
 
 const Satellite = () => {

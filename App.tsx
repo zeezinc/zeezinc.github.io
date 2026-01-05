@@ -297,9 +297,9 @@ const App: React.FC = () => {
             transition={{ delay: 1.2, duration: 1 }}
             className="mt-16 flex justify-center gap-6"
           >
-             <a href="#" className={`${theme === 'neon' ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-mech-text'} transition-all hover:scale-110`}><Github size={32} /></a>
-             <a href="#" className={`${theme === 'neon' ? 'text-gray-400' : 'text-gray-500'} ${iconHover} transition-all hover:scale-110`}><Linkedin size={32} /></a>
-             <a href="#" className={`${theme === 'neon' ? 'text-gray-400 hover:text-neon-purple' : 'text-gray-500 hover:text-mech-indigo'} transition-all hover:scale-110`}><Mail size={32} /></a>
+             <a href="https://github.com/zeezinc" target="_blank" rel="noopener noreferrer" className={`${theme === 'neon' ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-mech-text'} transition-all hover:scale-110`}><Github size={32} /></a>
+             <a href="https://www.linkedin.com/in/zeezinc/" target="_blank" rel="noopener noreferrer" className={`${theme === 'neon' ? 'text-gray-400' : 'text-gray-500'} ${iconHover} transition-all hover:scale-110`}><Linkedin size={32} /></a>
+             <a href="mailto:zeezinc@gmail.com" className={`${theme === 'neon' ? 'text-gray-400 hover:text-neon-purple' : 'text-gray-500 hover:text-mech-indigo'} transition-all hover:scale-110`}><Mail size={32} /></a>
           </motion.div>
         </div>
       </section>
