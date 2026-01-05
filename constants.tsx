@@ -76,7 +76,7 @@ export const AI_PROFILE: ProfileData = {
       id: 1,
       role: "Gen AI Data Enthusiast",
       company: "Hexalytics",
-      period: "2025 - Present",
+      period: "2024 - Present",
       description: "Developed Generative AI chatbots and analytics solutions by integrating LLMs with vector-based RAG pipelines. Built AI-powered platforms for education and real estate, reducing manual effort by 50–70%. Designed Python/FastAPI backends for automating document processing across PDFs, Audio, and Video. Deployed cloud-native solutions on AWS using Docker.",
       skills: ["LLMs", "RAG", "Agents", "FastAPI", "Python", "Pandas", "AWS", "Docker"]
     },
@@ -259,7 +259,7 @@ export const SWE_PROFILE: ProfileData = {
       id: 1,
       role: "Gen AI Data Enthusiast",
       company: "Hexalytics",
-      period: "2025 - Present",
+      period: "2024 - Present",
       description: "Developed Generative AI chatbots and analytics solutions by integrating LLMs with vector-based RAG pipelines. Built AI-powered platforms for education and real estate, reducing manual effort by 50–70%. Designed Python/FastAPI backends for automating document processing across PDFs, Audio, and Video. Deployed cloud-native solutions on AWS using Docker.",
       skills: ["LLMs", "RAG", "Agents", "FastAPI", "Python", "Pandas", "AWS", "Docker"]
     },
