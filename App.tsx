@@ -286,9 +286,15 @@ const App: React.FC = () => {
             >
               View Work
             </button>
-            <button className={`px-8 py-3 border font-bold uppercase tracking-widest transition-colors duration-300 rounded flex items-center justify-center gap-2 ${buttonSecondary}`}>
+            <a 
+              href={activeProfile.hero.resumeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className={`px-8 py-3 border font-bold uppercase tracking-widest transition-colors duration-300 rounded flex items-center justify-center gap-2 ${buttonSecondary}`}
+            >
               <Download size={18} /> Resume
-            </button>
+            </a>
           </motion.div>
 
           <motion.div

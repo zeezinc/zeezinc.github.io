@@ -15,7 +15,8 @@ export const AI_PROFILE: ProfileData = {
   hero: {
     title: "GENERATIVE AI ENGINEER",
     subtitle: "Architecting the Future with LLMs",
-    description: "Specializing in Large Language Models, Retrieval-Augmented Generation, Document Intelligence Systems Agentic Workflows. I build intelligent systems that create, reason, and adapt."
+    description: "Specializing in Large Language Models, Retrieval-Augmented Generation, Document Intelligence Systems Agentic Workflows. I build intelligent systems that create, reason, and adapt.",
+    resumeLink: "/resume.pdf"
   },
   about: {
     text: "I build practical AI systems that turn complex data into useful, real-world applications — from document intelligence and search to analytics-driven platforms. I enjoy working where AI meets backend engineering, focusing on systems that are reliable, scalable, and actually usable in production. Outside of work, I like experimenting and creating — whether that’s building and modding cars, exploring digital art, discovering new food spots, traveling, or picking up new languages along the way.",
@@ -128,27 +129,20 @@ export const AI_PROFILE: ProfileData = {
     },
   ],
   certificates: [
-    // {
-    //   id: 1,
-    //   name: "TensorFlow Developer Certificate",
-    //   issuer: "Google",
-    //   date: "2021",
-    //   link: "#"
-    // },
-    // {
-    //   id: 2,
-    //   name: "Deep Learning Specialization",
-    //   issuer: "Coursera",
-    //   date: "2020",
-    //   link: "#"
-    // },
-    // {
-    //   id: 3,
-    //   name: "AWS Certified ML - Specialty",
-    //   issuer: "Amazon Web Services",
-    //   date: "2022",
-    //   link: "#"
-    // }
+    {
+      id: 1,
+      name: "Build, Containerize, and Deploy Spring Boot Apps",
+      issuer: "Google",
+      date: "2022",
+      link: "https://developers.google.com/profile/badges/playlists/cloud/cloud-containerize-deploy-spring-boot"
+    },
+    {
+      id: 2,
+      name: "Master Document Management System With Alfresco",
+      issuer: "Udemy",
+      date: "2025",
+      link: "https://www.udemy.com/certificate/UC-bb133a7e-b863-4684-8d2f-1156ab0b8166/"
+    }
   ],
   skills: [
     // Programming & Backend
@@ -206,7 +200,8 @@ export const SWE_PROFILE: ProfileData = {
   hero: {
     title: "FULL STACK ENGINEER",
     subtitle: "Building Scalable Digital Architectures",
-    description: "Crafting robust web applications with clean code and modern architectures. I bridge the gap between complex backend logic and intuitive frontend experiences."
+    description: "Crafting robust web applications with clean code and modern architectures. I bridge the gap between complex backend logic and intuitive frontend experiences.",
+    resumeLink: "/resume.pdf"
   },
   about: {
     text: "I’m a backend software engineer who enjoys building clean, dependable systems using Java and modern backend frameworks. My work centers around designing APIs, handling complex business logic, and improving performance across large, real-world systems. Outside of work, I like slowing things down — spending time in nature, sketching and drawing, and staying active through sports like football, swimming, and tennis.",
@@ -325,13 +320,6 @@ export const SWE_PROFILE: ProfileData = {
       date: "2025",
       link: "https://www.udemy.com/certificate/UC-bb133a7e-b863-4684-8d2f-1156ab0b8166/"
     }
-    // ,{
-    //   id: 3,
-    //   name: "Certified Kubernetes Administrator",
-    //   issuer: "CNCF",
-    //   date: "2023",
-    //   link: "#"
-    // }
   ],
   skills: [
     // BACK END

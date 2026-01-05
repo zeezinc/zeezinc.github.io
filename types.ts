@@ -63,6 +63,7 @@ export interface ProfileData {
     title: string;
     subtitle: string;
     description: string;
+    resumeLink: string;
   };
   about: About;
   projects: Project[];
