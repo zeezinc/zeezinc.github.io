@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Download, Cpu, Brain, Award, CheckCircle, Heart, ToggleLeft, ToggleRight, GraduationCap, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import { Menu, X, Github, Linkedin, Mail, Download, ExternalLink, Cpu, Brain, Award, CheckCircle, Heart, ToggleLeft, ToggleRight, GraduationCap, Sparkles, ChevronDown, FileText } from 'lucide-react';
 import Background3D from './components/Background3D';
 import SectionWrapper from './components/SectionWrapper';
 import SkillsChart from './components/SkillsChart';
@@ -15,9 +15,22 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>('neon');
   const [activeSection, setActiveSection] = useState('hero');
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const resumeRef = useRef<HTMLDivElement>(null);
   
   const activeProfile = theme === 'neon' ? AI_PROFILE : SWE_PROFILE;
   
+  // Close resume dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (resumeRef.current && !resumeRef.current.contains(event.target as Node)) {
+        setIsResumeOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   // Group skills by category for the accordion view
   const skillsByCategory = activeProfile.skills.reduce((acc, skill) => {
     if (!acc[skill.category]) {
@@ -117,6 +130,9 @@ const App: React.FC = () => {
   const buttonSecondary = theme === 'neon'
     ? 'border-white text-white hover:bg-white hover:text-black'
     : 'border-mech-text text-mech-text hover:bg-mech-text hover:text-white';
+  const menuBg = theme === 'neon' ? 'bg-bg-card border-white/10' : 'bg-white border-gray-200';
+  const menuItemHover = theme === 'neon' ? 'hover:bg-white/5 hover:text-neon-cyan' : 'hover:bg-gray-50 hover:text-mech-sky';
+
   const iconHover = theme === 'neon' ? 'hover:text-neon-cyan' : 'hover:text-mech-sky';
   const selectionClass = theme === 'neon' ? 'selection:bg-neon-cyan/30 selection:text-neon-cyan' : 'selection:bg-mech-sky/30 selection:text-mech-sky';
 
@@ -286,15 +302,53 @@ const App: React.FC = () => {
             >
               View Work
             </button>
-            <a 
-              href={activeProfile.hero.resumeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className={`px-8 py-3 border font-bold uppercase tracking-widest transition-colors duration-300 rounded flex items-center justify-center gap-2 ${buttonSecondary}`}
-            >
-              <Download size={18} /> Resume
-            </a>
+            
+            {/* Resume Dropdown Button */}
+            <div className="relative" ref={resumeRef}>
+              <button 
+                onClick={() => setIsResumeOpen(!isResumeOpen)}
+                className={`w-full sm:w-auto px-8 py-3 border font-bold uppercase tracking-widest transition-colors duration-300 rounded flex items-center justify-center gap-2 ${buttonSecondary}`}
+              >
+                <FileText size={18} /> Resume <ChevronDown size={14} className={`transition-transform duration-300 ${isResumeOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {isResumeOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className={`absolute top-full left-0 right-0 sm:left-auto sm:right-0 mt-2 min-w-[200px] rounded-xl border shadow-2xl overflow-hidden z-50 backdrop-blur-md ${menuBg}`}
+                  >
+                    <div className="flex flex-col p-1">
+                      <a 
+                        href="https://app.rezi.ai/s/zeezinc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`px-4 py-3 flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${menuItemHover} ${theme === 'neon' ? 'text-gray-300' : 'text-gray-600'}`}
+                      >
+                        <ExternalLink size={16} />
+                        <span>View Online</span>
+                      </a>
+                      
+                      <div className={`h-px mx-2 ${theme === 'neon' ? 'bg-white/10' : 'bg-gray-200'}`}></div>
+
+                      <a 
+                        href={activeProfile.hero.resumeLink}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`px-4 py-3 flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${menuItemHover} ${theme === 'neon' ? 'text-gray-300' : 'text-gray-600'}`}
+                      >
+                        <Download size={16} />
+                        <span>Download PDF</span>
+                      </a>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
 
           <motion.div

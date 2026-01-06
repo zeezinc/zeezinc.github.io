@@ -1,9 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, ThreeElements } from '@react-three/fiber';
 import { TorusKnot, Icosahedron, Box, Torus, Octahedron, Dodecahedron, OrbitControls, Cone, Cylinder, Sphere, Tetrahedron } from '@react-three/drei';
 import { Project, Theme } from '../types';
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements extends ThreeElements {}
+  }
+}
 
 const ProjectModel = ({ projectId, color, hovered, theme }: { projectId: number, color: string, hovered: boolean, theme: Theme }) => {
   const meshRef = useRef<any>(null);

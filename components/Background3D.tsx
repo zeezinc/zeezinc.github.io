@@ -1,8 +1,14 @@
 import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, ThreeElements } from '@react-three/fiber';
 import { Float, Stars, Torus, Octahedron, Box, Sphere, Cone, Cylinder } from '@react-three/drei';
 import * as THREE from 'three';
 import { Theme } from '../types';
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements extends ThreeElements {}
+  }
+}
 
 // --- Neon Theme Components (Space Theme) ---
 
