@@ -20,7 +20,7 @@ export const AI_PROFILE: ProfileData = {
   },
   about: {
     text: "I build practical AI systems that turn complex data into useful, real-world applications — from document intelligence and search to analytics-driven platforms. I enjoy working where AI meets backend engineering, focusing on systems that are reliable, scalable, and actually usable in production. Outside of work, I like experimenting and creating — whether that’s building and modding cars, exploring digital art, discovering new food spots, traveling, or picking up new languages along the way.",
-    hobbies: ["Digital Art", "Video Games","Building & Modding Cars", "Learning Languages", "Food Blogging", "Travel"]
+    hobbies: ["Digital Art", "Video Games", "Building & Modding Cars", "Learning Languages", "Food Blogging", "Travel"]
   },
   projects: [
     {
@@ -51,7 +51,7 @@ export const AI_PROFILE: ProfileData = {
       id: 4,
       title: "Student Information Bot",
       description: "AI agent that converts natural language queries into SQL, executes them with validation and auto-correction layers, and generates data-driven insights. Reduced dependency on data analysts by 50% through automated query generation and execution.",
-      tech: ["Claude", "FastAPI", "Snowflake", "Python", "SQL"],
+      tech: ["Gemini", "FastAPI", "LangGraph", "Snowflake", "Python", "SQL"],
       image: "",
       link: "#"
     },
@@ -59,7 +59,7 @@ export const AI_PROFILE: ProfileData = {
       id: 5,
       title: "Property Finder Dashboard (AI-Adjacent Backend)",
       description: "High-performance backend powering real-estate search for a Middle-East platform. Implemented dynamic filters, caching, async schedulers, and Redshift analytics to support fast, scalable query execution, improving performance by 3×.",
-      tech: ["Python", "FastAPI", "AWS", "Redis", "Redshift", "Boto3", "Docker"],
+      tech: ["Python", "FastAPI", "Ranking & Heuristics", "AWS", "Redis", "Redshift", "Boto3", "Docker"],
       image: "",
       link: "#"
     },
@@ -67,7 +67,7 @@ export const AI_PROFILE: ProfileData = {
       id: 6,
       title: "Third Eye – Traffic Surveillance System",
       description: "Computer vision system for analyzing vehicle movements and detecting traffic violations from images and videos. Processed 10,000+ media files to improve traffic enforcement and road safety.",
-      tech: ["Computer Vision", "Machine Learning", "Python", "OpenCV", "YOLO"],
+      tech: ["Computer Vision", "Machine Learning", "Python", "Flask", "Django", "TensorFlow", "Keras", "Numpy", "Pandas", "OpenCV", "YOLO"],
       image: "",
       link: "#"
     }
@@ -83,19 +83,19 @@ export const AI_PROFILE: ProfileData = {
     },
     {
       id: 2,
-      role: "Software Developer",
+      role: "Data & Backend Engineer",
       company: "HftSolution",
       period: "2021 - 2024",
-      description: "Designed enterprise-grade backend systems using Java and Spring Boot. Led development of core functional modules reducing errors by 60–70%. Migrated legacy monolithic applications to microservices and built secure RESTful APIs. Optimized database queries improving performance by ~30%.",
-      skills: ["Java", "Spring Boot", "Microservices", "REST APIs", "SQL", "Message Brokers", "CI/CD"]
+      description: "Designed and developed enterprise-grade backend services using Python and FastAPI across healthcare, facility management, and payroll domains. Built core functional modules with strong validations and rule-based logic, reducing manual errors by 60–70%. Developed RESTful APIs and data pipelines to support reporting and downstream analytics. Optimized database queries improving performance by ~30% and improved system stability through testing and monitoring.",
+      skills: ["Python", "FastAPI", "REST APIs", "PostgreSQL", "Data Pipelines", "Backend Architecture", "CI/CD"]
     },
     {
       id: 3,
-      role: "Software Developer Intern",
+      role: "Backend Systems Intern",
       company: "Transition Computing",
       period: "2019 - 2020",
-      description: "Assisted in migrating legacy backend applications from .NET Framework to .NET Core. Optimized database operations using Entity Framework Core reducing manual SQL scripting. Validated RESTful APIs using Postman and Swagger UI. Used GitHub for version control , following best practices for commits, branching strategies, pull requests, and collaborative code management.",
-      skills: [".NET Core", "Entity Framework", "REST APIs", "Git", "Postman", "Swagger UI", "MySQL", "HTML", "CSS", "Javascript"]
+      description: "Contributed to backend system modernization using Java and Spring-based layered architecture. Assisted in refactoring service and repository layers, improving REST API structure, request validation, and data consistency. Supported ORM-based data access, API testing, and collaborative development workflows in a production environment.",
+      skills: ["Java", "Spring", "REST APIs", "Layered Architecture", "ORM", "Git", "Postman", "Swagger UI", "SQL"]
     }
   ],
   education: [
@@ -260,19 +260,19 @@ export const SWE_PROFILE: ProfileData = {
     },
     {
       id: 2,
-      role: "Software Developer",
+      role: "Data & Backend Engineer",
       company: "HftSolution",
       period: "2021 - 2024",
-      description: "Designed enterprise-grade backend systems using Java and Spring Boot. Led development of core functional modules reducing errors by 60–70%. Migrated legacy monolithic applications to microservices and built secure RESTful APIs. Optimized database queries improving performance by ~30%.",
-      skills: ["Java", "Spring Boot", "Microservices", "REST APIs", "SQL", "Message Brokers", "CI/CD"]
+      description: "Designed and developed enterprise-grade backend services using Python and FastAPI across healthcare, facility management, and payroll domains. Built core functional modules with strong validations and rule-based logic, reducing manual errors by 60–70%. Developed RESTful APIs and data pipelines to support reporting and downstream analytics. Optimized database queries improving performance by ~30% and improved system stability through testing and monitoring.",
+      skills: ["Python", "FastAPI", "REST APIs", "PostgreSQL", "Data Pipelines", "Backend Architecture", "CI/CD"]
     },
     {
       id: 3,
-      role: "Software Developer Intern",
+      role: "Backend Systems Intern",
       company: "Transition Computing",
       period: "2019 - 2020",
-      description: "Assisted in migrating legacy backend applications from .NET Framework to .NET Core. Optimized database operations using Entity Framework Core reducing manual SQL scripting. Validated RESTful APIs using Postman and Swagger UI. Used GitHub for version control , following best practices for commits, branching strategies, pull requests, and collaborative code management.",
-      skills: [".NET Core", "Entity Framework", "REST APIs", "Git", "Postman", "Swagger UI", "MySQL", "HTML", "CSS", "Javascript"]
+      description: "Contributed to backend system modernization using Java and Spring-based layered architecture. Assisted in refactoring service and repository layers, improving REST API structure, request validation, and data consistency. Supported ORM-based data access, API testing, and collaborative development workflows in a production environment.",
+      skills: ["Java", "Spring", "REST APIs", "Layered Architecture", "ORM", "Git", "Postman", "Swagger UI", "SQL"]
     }
   ],
   education: [
