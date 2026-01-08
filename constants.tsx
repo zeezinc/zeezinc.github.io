@@ -198,7 +198,7 @@ export const AI_PROFILE: ProfileData = {
 
 export const SWE_PROFILE: ProfileData = {
   hero: {
-    title: "FULL STACK ENGINEER",
+    title: "BACKEND SOFTWARE ENGINEER",
     subtitle: "Building Scalable Digital Architectures",
     description: "Crafting robust web applications with clean code and modern architectures. I bridge the gap between complex backend logic and intuitive frontend experiences.",
     resumeLink: "/resume.pdf"
