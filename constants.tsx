@@ -131,17 +131,10 @@ export const AI_PROFILE: ProfileData = {
   certificates: [
     {
       id: 1,
-      name: "Build, Containerize, and Deploy Spring Boot Apps",
-      issuer: "Google",
-      date: "2022",
-      link: "https://developers.google.com/profile/badges/playlists/cloud/cloud-containerize-deploy-spring-boot"
-    },
-    {
-      id: 2,
-      name: "Master Document Management System With Alfresco",
-      issuer: "Udemy",
-      date: "2025",
-      link: "https://www.udemy.com/certificate/UC-bb133a7e-b863-4684-8d2f-1156ab0b8166/"
+      name: "AI Upskilling Certificate: Technical Foundations",
+      issuer: "Qualcomm",
+      date: "2026",
+      link: "https://www.credly.com/badges/9498ee26-f487-4a96-b321-f6b2e8721e57/public_url"
     }
   ],
   skills: [
